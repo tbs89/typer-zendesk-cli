@@ -2,9 +2,9 @@
     <h1>Typer Zendesk CLI Tool</h1>
     <p>Typer Zendesk CLI Tool is a powerful command-line interface application designed to facilitate the management of Zendesk tasks. It leverages the flexibility of Typer and the comprehensive API provided by Zendesk to offer a seamless user experience for managing tickets, users, groups, and more directly from your terminal.</p>
 
-<p>The Typer Zendesk CLI Tool was developed using <a href="https://typer.tiangolo.com" target="_blank">Typer</a>, a powerful library for building CLI applications with Python. Typer is created by <a hred="https://github.com/tiangolo">Sebastián Ramírez</a>, the same developer behind the popular FastAPI framework. 
+<p>The Typer Zendesk CLI Tool was developed using <a href="https://typer.tiangolo.com" target="_blank">Typer</a>, a powerful library for building CLI applications with Python. Typer is created by <a href="https://github.com/tiangolo" target="_blank">Sebastián Ramírez</a>, the same developer behind the popular FastAPI framework. 
 
-    
+<hr>
   <h2>Features</h2>
     <ul>
         <li>Fetch and display Zendesk data such as users, tickets, and groups.</li>
@@ -33,7 +33,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
 <pre><code>python app-cli/main.py</code></pre>
 <p>This command will display the Main Menu, guiding you through the available commands and options:</p>
 
-<br>
+<br><br>
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/main_menu.png" alt="Main Menu" width="400">
 
   <h2>Easy Navigation</h2>
@@ -41,18 +41,18 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
 
 <h2>Getting Started</h2>
 <p>Before diving into the commands and functionalities, you need to set up your credentials. Navigate to 'Set up Zendesk credentials' from the Main Menu and provide your Zendesk email, domain, and API token. 
-
+<br><br><br>
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/setup_api.png" alt="Set Up" width="800">
-
+<br><br><br>
 The application supports both production and sandbox environments, with the sandbox being optional for a safer testing ground.</p>
 
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/setup_api2.png" alt="Set Up" width="800">
-
+<br>
 
 
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/api_success.png" alt="Set Up" width="600">
-
-
+<br><br><br>
+<hr>
 <h2>Navigating the Application</h2>
 <p>Once your credentials are set up, navigate to the <strong>Admin Actions</strong> section from the main menu to explore a variety of tasks you can perform:</p>
 <ul>
@@ -117,7 +117,8 @@ The data is downloaded in CSV in a folder created by the app:
 
 
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/admin_actions.png" alt="Set Up" width="400">
-
+<br><br><br>
+<hr>
 
   <h2>Contribution</h2>
     <p>Contributions to the Typer Zendesk CLI Tool are welcome! Feel free to fork the repository, make your changes, and submit a pull request.</p>
