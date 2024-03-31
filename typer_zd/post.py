@@ -24,6 +24,8 @@ def create_groups(file_name: str, environment: str):
         if 'group_name' not in df.columns or df.empty:
             print(
                 "[bold yellow]The file must have a header with 'group_name' as the first column name and at least one group name./[bold yellow]")
+            print(
+                "[Download CSV Template: https://github.com/tbs89/typer_zd/blob/main/docs/templates/create_groups_template.csv]")
             return
 
         typer.echo("You are about to create the following groups:")
@@ -52,7 +54,7 @@ def create_groups(file_name: str, environment: str):
         df.to_csv(file_path, index=False)
         print(f"[bold green]File updated with group IDs at {file_path}[/bold green]")
     except FileNotFoundError:
-        print(f"[bold yellow]File {file_name} not found.[/bold yellow]")
+        print(f"[bold yellow]File '{file_name}' not found.[/bold yellow]")
 
 
 
@@ -81,6 +83,8 @@ def assign_agents_to_group(file_name: str, group_id: int, environment: str):
         df = pd.read_csv(file_path)
         if 'email' not in df.columns or df.empty:
             print("[bold yellow]The file must have a header with 'email' as the first column name.[/bold yellow]")
+            print(
+                "[Download CSV Template: https://github.com/tbs89/typer_zd/blob/main/docs/templates/assign_agents_template.csv]")
             return
 
         df['group_membership_id'] = None
@@ -106,7 +110,7 @@ def assign_agents_to_group(file_name: str, group_id: int, environment: str):
         df.to_csv(file_path, index=False)
         print(f"[bold green]CSV file updated with group memberships at {file_path}[/bold green]")
     except FileNotFoundError:
-        print(f"[bold red]File {file_name} not found [/bold red]")
+        print(f"[bold red]File '{file_name}' not found [/bold red]")
 
 
 # UTILS
@@ -133,6 +137,8 @@ def create_agents_in_bulk(file_name: str, environment: str):
         df = pd.read_csv(file_path)
         if not all(column in df.columns for column in ['name', 'email', 'custom_role_id']):
             print("[bold yellow]The file must have 'name', 'email', and 'custom_role_id' columns.[/bold yellow]")
+            print("[Download CSV Template: https://github.com/tbs89/typer_zd/blob/main/docs/templates/create_agents_template.csv]")
+
             return
 
         typer.echo("You are about to create the following agents:")
@@ -170,13 +176,7 @@ def create_agents_in_bulk(file_name: str, environment: str):
         typer.echo("-----------------------------------------------------------------")
         print(f"[bold green]CSV file updated with creation status at {file_path}[/bold green]")
     except FileNotFoundError:
-        print(f"[bold yellow]File {file_name} not found [/bold yellow]")
-
-
-
-
-
-
+        print(f"[bold yellow]File '{file_name}' not found [/bold yellow]")
 
 
 
