@@ -56,19 +56,20 @@ The application supports both production and sandbox environments, with the sand
     <li><strong>Get Actions</strong>: Fetch and download as CSV various Zendesk entities such as:</li>
 </ul>
         <ul>
-            <li><code>Users</code></li>
-            <li><code>Macros</code></li>
-            <li><code>Articles</code></li>
-            <li><code>Organizations</code></li>
-            <li><code>Groups</code></li>
-            <li><code>Dynamic Content</code></li>
-            <li><code>Viewst</code></li>
-            <li><code>Triggers</code></li>
-            <li><code>Automations</code></li>
-            <li><code>Brands</code></li>
-            <li><code>User Fields</code></li>
-            <li><code>Ticket fields</code></li>
+    <li><code>Users</code>: Download a list of all users including agents and administrators.</li>
+    <li><code>Macros</code>: Fetch all the macros set up for ticket responses and actions.</li>
+    <li><code>Articles</code>: Retrieve all articles from your Zendesk Help Center.</li>
+    <li><code>Organizations</code>: Get a list of all organizations added to your Zendesk.</li>
+    <li><code>Groups</code>: Download details of agent groups for managing tickets.</li>
+    <li><code>Dynamic Content</code>: Fetch all dynamic content items for use in tickets and help center articles.</li>
+    <li><code>Views</code>: Retrieve all views that define ticket lists based on certain criteria.</li>
+    <li><code>Triggers</code>: Download all triggers that automatically perform actions on tickets.</li>
+    <li><code>Automations</code>: Fetch automations that perform actions on tickets after certain conditions have been met over time.</li>
+    <li><code>Brands</code>: Get a list of all brands managed within your Zendesk instance.</li>
+    <li><code>User Fields</code>: Download custom fields added to user profiles.</li>
+    <li><code>Ticket Fields</code>: Retrieve custom fields added to tickets for additional data collection.</li>
         </ul>
+
 
 
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/get_data.png" alt="Set Up" width="600">
@@ -76,6 +77,9 @@ The application supports both production and sandbox environments, with the sand
 The data is downloaded in CSV in a folder created by the app:
 
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/get_data2.png" alt="Set Up" width="800">
+
+
+
 
 
 
