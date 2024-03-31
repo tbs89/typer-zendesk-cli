@@ -1,6 +1,6 @@
 <body>
     <h1>Typer Zendesk CLI Tool</h1>
-    <p>Typer Zendesk CLI Tool is a powerful command-line interface application designed to facilitate the management of Zendesk tasks. It leverages the flexibility of Typer and the comprehensive API provided by Zendesk to offer a seamless user experience for managing tickets, users, groups, and more directly from your terminal.</p>
+    <p>Typer Zendesk CLI Tool is a powerful command-line interface application designed to facilitate the management of Zendesk Admin tasks. It leverages the flexibility of Typer and the comprehensive API provided by Zendesk to offer a seamless user experience for managing tickets, users, groups, and more directly from your terminal.</p>
 
 <p>The Typer Zendesk CLI Tool was developed using <a href="https://typer.tiangolo.com" target="_blank">Typer</a>, a powerful library for building CLI applications with Python. Typer is created by <a href="https://github.com/tiangolo" target="_blank">Sebastián Ramírez</a>, the same developer behind the popular FastAPI framework. 
 
