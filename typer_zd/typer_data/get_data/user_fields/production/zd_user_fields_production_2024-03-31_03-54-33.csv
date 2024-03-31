@@ -1,6 +1,0 @@
-url,id,type,key,title,description,raw_title,raw_description,position,active,system,regexp_for_validation,created_at,updated_at,tag
-https://d3v-tomasbaidal.zendesk.com/api/v2/user_fields/13373229465885.json,13373229465885,checkbox,articles_on,Articles,,Articles,,0,True,False,,2023-09-05T17:22:04Z,2023-09-05T17:22:04Z,
-https://d3v-tomasbaidal.zendesk.com/api/v2/user_fields/13373230092573.json,13373230092573,checkbox,macros_on,Macros,,Macros,,1,True,False,,2023-09-05T17:22:13Z,2023-09-05T17:22:13Z,
-https://d3v-tomasbaidal.zendesk.com/api/v2/user_fields/17357622496541.json,17357622496541,date,last_ticket_deflected_user,Last Ticket Deflected User,,Last Ticket Deflected User,,2,True,False,\A([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])\z,2024-03-06T23:38:17Z,2024-03-06T23:38:17Z,
-https://d3v-tomasbaidal.zendesk.com/api/v2/user_fields/13372818924445.json,13372818924445,checkbox,zendownloader_app_macros,Download Macros User,,Download Macros User,,0,False,False,,2023-09-05T17:04:53Z,2023-09-05T17:09:15Z,zendownloader_app_macros
-https://d3v-tomasbaidal.zendesk.com/api/v2/user_fields/13372796584477.json,13372796584477,checkbox,zendownloader_app_articles,Download Articles User,,Download Articles User,,1,False,False,,2023-09-05T17:05:25Z,2023-09-05T17:09:12Z,zendownloader_app_articles

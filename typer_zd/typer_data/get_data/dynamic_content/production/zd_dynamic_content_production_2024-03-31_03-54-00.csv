@@ -1,2 +1,0 @@
-url,id,name,placeholder,default_locale_id,outdated,created_at,updated_at,variants
-https://d3v-tomasbaidal.zendesk.com/api/v2/dynamic_content/items/17889993971613.json,17889993971613,test,{{dc.test}},1176,False,2024-03-31T01:53:49Z,2024-03-31T01:53:49Z,"[{'url': 'https://d3v-tomasbaidal.zendesk.com/api/v2/dynamic_content/items/17889993971613/variants/17889993971741.json', 'id': 17889993971741, 'content': 'test', 'locale_id': 1176, 'outdated': False, 'active': True, 'default': True, 'created_at': '2024-03-31T01:53:49Z', 'updated_at': '2024-03-31T01:53:49Z'}]"
