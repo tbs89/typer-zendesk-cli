@@ -1,0 +1,32 @@
+url,id,is_public,name,description,default,deleted,created_at,updated_at
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6317499923485.json,6317499923485,True,Customer Service,,False,False,2022-08-14T16:53:49Z,2022-08-14T16:54:25Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308306119453.json,6308306119453,True,Customer Service Austria,,False,False,2022-08-13T16:12:21Z,2022-08-13T16:12:21Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308302914205.json,6308302914205,True,Customer Service France,,False,False,2022-08-13T16:10:56Z,2022-08-13T16:10:56Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308272530973.json,6308272530973,True,Customer Service Germany,,False,False,2022-08-13T16:10:48Z,2022-08-13T16:10:48Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6317571581853.json,6317571581853,True,Customer Service Intern,,False,False,2022-08-14T16:56:09Z,2022-08-14T16:56:09Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308303389469.json,6308303389469,True,Customer Service Netherlands,,False,False,2022-08-13T16:11:08Z,2022-08-13T16:11:08Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6317545673245.json,6317545673245,True,Finance,,False,False,2022-08-14T16:54:31Z,2022-08-14T16:54:31Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308245116317.json,6308245116317,False,Finance Austria,,False,False,2022-08-13T16:06:46Z,2022-08-13T16:06:46Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308258679709.json,6308258679709,False,Finance France,,False,False,2022-08-13T16:06:23Z,2022-08-13T16:06:23Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308266872349.json,6308266872349,False,Finance Germany,,False,False,2022-08-13T16:05:59Z,2022-08-13T16:05:59Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6317533223069.json,6317533223069,False,Finance Intern,,False,False,2022-08-14T16:56:18Z,2022-08-14T16:56:18Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308255556125.json,6308255556125,False,Finance Netherlands,,False,False,2022-08-13T16:06:32Z,2022-08-13T16:07:11Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6317585303709.json,6317585303709,True,People,,False,False,2022-08-14T16:54:14Z,2022-08-14T16:54:14Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308247958173.json,6308247958173,True,People Austria,,False,False,2022-08-13T16:08:35Z,2022-08-13T16:08:35Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308287266461.json,6308287266461,True,People France,,False,False,2022-08-13T16:08:13Z,2022-08-13T16:08:13Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308246840605.json,6308246840605,True,People Germany,,False,False,2022-08-13T16:07:53Z,2022-08-13T16:07:53Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6317556147741.json,6317556147741,True,People Intern,,False,False,2022-08-14T16:56:43Z,2022-08-14T16:56:43Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308247665437.json,6308247665437,True,People Netherlands,,False,False,2022-08-13T16:08:24Z,2022-08-13T16:08:24Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/4690004598557.json,4690004598557,True,Support,,True,False,2022-03-28T13:47:01Z,2022-03-28T13:47:01Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308279107101.json,6308279107101,True,Warehouse Austria,,False,False,2022-08-13T16:10:29Z,2022-08-13T16:10:29Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308278651165.json,6308278651165,True,Warehouse France,,False,False,2022-08-13T16:10:12Z,2022-08-13T16:10:12Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308295075357.json,6308295075357,True,Warehouse Germany,,False,False,2022-08-13T16:10:03Z,2022-08-13T16:10:03Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308290424861.json,6308290424861,True,Warehouse Netherlands,,False,False,2022-08-13T16:10:21Z,2022-08-13T16:10:21Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6317545879453.json,6317545879453,True,Warehouse Operations,,False,False,2022-08-14T16:54:41Z,2022-08-14T16:54:41Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6317596600989.json,6317596600989,True,Warehouse Operations Intern,,False,False,2022-08-14T16:56:53Z,2022-08-14T16:56:53Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308249474845.json,6308249474845,True,Workforce Austria,,False,False,2022-08-13T16:09:33Z,2022-08-13T16:09:33Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308248782749.json,6308248782749,True,Workforce France,,False,False,2022-08-13T16:09:12Z,2022-08-13T16:09:12Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308261850269.json,6308261850269,True,Workforce Germany,,False,False,2022-08-13T16:09:01Z,2022-08-13T16:09:01Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6308293548957.json,6308293548957,True,Workforce Netherlands,,False,False,2022-08-13T16:09:21Z,2022-08-13T16:09:21Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6317500161181.json,6317500161181,True,Workforce Support,,False,False,2022-08-14T16:54:06Z,2022-08-14T16:54:06Z
+https://d3v-tomasbaidal.zendesk.com/api/v2/groups/6317547353373.json,6317547353373,True,Workforce Support Intern,,False,False,2022-08-14T16:56:30Z,2022-08-14T16:56:30Z

@@ -1,0 +1,2 @@
+url,id,name,brand_url,subdomain,host_mapping,has_help_center,help_center_state,active,default,is_deleted,logo,ticket_form_ids,signature_template,created_at,updated_at
+https://d3v-tomasbaidal.zendesk.com/api/v2/brands/4690004556061.json,4690004556061,TomasBaidal,https://d3v-tomasbaidal.zendesk.com,d3v-tomasbaidal,,True,enabled,True,True,False,,"[4690004554013, 6317082406301, 17726580408221]",{{agent.signature}},2022-03-28T13:47:01Z,2022-03-28T13:58:48Z
