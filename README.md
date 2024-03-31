@@ -1,6 +1,9 @@
 <body>
     <h1>Typer Zendesk CLI Tool</h1>
     <p>Typer Zendesk CLI Tool is a powerful command-line interface application designed to facilitate the management of Zendesk tasks. It leverages the flexibility of Typer and the comprehensive API provided by Zendesk to offer a seamless user experience for managing tickets, users, groups, and more directly from your terminal.</p>
+
+<p>The Typer Zendesk CLI Tool was developed using <a href="https://typer.tiangolo.com" target="_blank">Typer</a>, a powerful library for building CLI applications with Python. Typer is created by <a hred="https://github.com/tiangolo">Sebastián Ramírez</a>, the same developer behind the popular FastAPI framework. 
+
     
   <h2>Features</h2>
     <ul>
@@ -82,64 +85,39 @@ The data is downloaded in CSV in a folder created by the app:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<ul> 
-    <li><strong>Put Actions</strong>: Update existing Zendesk configurations and permissions.</li>
-    <li><strong>Post Actions</strong>: Create new users, groups, and other entities in bulk.</li>
-    <li><strong>ADVANCED</strong>: Perform advanced actions using Zenpy, such as applying macros to tickets and adding tags.</li>
-</ul>
-
-
-
-<h2>Key Commands and Features</h2>
-<p>The Typer Zendesk CLI Tool offers a wide range of commands to streamline your Zendesk management tasks:</p>
 <ul>
-    <li><code>get-users</code>: Retrieves and displays a list of Zendesk users.</li>
-    <li><code>create-group</code>: Creates a new group within Zendesk.</li>
-    <li><code>apply-macro</code>: Applies a specified macro to a list of tickets, allowing for efficient bulk updates.</li>
-    <li><code>add-tags</code>: Adds tags to a specified ticket, enhancing ticket organization and filtering.</li>
+    <li>
+        <strong>Put Actions</strong>: This feature enables the modification of existing permissions for macros within your Zendesk environment. You can specifically define the access control for macros, determining which user groups can utilize them for automated responses. This section facilitates both the restriction of macros to selected groups for focused use and the opening of macros for access by all users.
+    </li>
 </ul>
-<p>These commands represent just the beginning of what the Typer Zendesk CLI Tool can do. Dive into each section within the <strong>Admin Actions</strong> menu to discover more capabilities designed to enhance your Zendesk experience.</p>
 
-<p>The 'Admin Actions' menu is designed for easy navigation, enabling you to execute powerful Zendesk operations without ever needing to use the <code>--help</code> command.</p>
+<br><br>
+<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/update_macros_put.png" alt="Set Up" width="800">
+<br><br><br>
+
+<ul>
+    <li>
+        <strong>Post Actions</strong>: Facilitate bulk creation of users, groups, and other Zendesk entities to streamline administrative tasks. This functionality is ideal for large-scale deployments or organizational changes, enabling you to efficiently onboard new users, establish groups for better collaboration, and add other necessary entities with minimal manual input.
+    </li>
+</ul>
+
+<br><br>
+<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/post_options.png" alt="Set Up" width="600">
+<br><br><br>
+ <ul>   
+    <li>
+        <strong>ADVANCED</strong>: Using <a href="http://docs.facetoe.com.au/zenpy.html">Zenpy</a> for more management of tickets, including the application of macros and the addition of tags to tickets by giving a list of tickets, the user can apply macros directly to tickets.
+    </li>
+</ul>
+
+<br><br>
+<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/advanced.png" alt="Set Up" width="600">
+
+<br><br><br>
+
 
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/admin_actions.png" alt="Set Up" width="400">
 
-
-
-<h2>Advanced Usage</h2>
-<p>For those looking to leverage the full power of <a href="http://docs.facetoe.com.au/zenpy.html">Zenpy</a>, the 'ADVANCED' section offers more functionalities:</p>
-
-<ul>
-    <li><strong>Apply Macros to Tickets</strong> - Automate ticket responses and actions by applying predefined macros in bulk, saving time and ensuring consistency in your communications.</li>
-    <li><strong>Apply Tags to Tickets</strong> - Enhance ticket categorization and searchability by adding tags in bulk, allowing for more effective ticket management and reporting.</li>
-</ul>
-
-<p>These advanced features make it possible to handle complex Zendesk tasks directly from your terminal, offering a level of control and efficiency that can significantly boost your support operations.</p>
-
-
-
-
-
-
-
-
-
-
-
-    
-
-  
 
   <h2>Contribution</h2>
     <p>Contributions to the Typer Zendesk CLI Tool are welcome! Feel free to fork the repository, make your changes, and submit a pull request.</p>
