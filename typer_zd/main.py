@@ -1,4 +1,3 @@
-import typer
 from credentials import app as credentials_app
 from get import *
 from post import *
@@ -9,6 +8,8 @@ from rich import print
 
 
 app = typer.Typer(add_completion=False, help="This is a command line tool for managing Zendesk tasks.")
+
+
 
 def prompt_for_environment() -> str:
     """Prompts the user for the environment and validates the input."""

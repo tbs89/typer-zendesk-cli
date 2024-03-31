@@ -1,9 +1,8 @@
-# credentials.py
+
 import os
 import typer
 import requests
 from zenpy import Zenpy
-from dotenv import load_dotenv, dotenv_values
 from rich import print
 
 app = typer.Typer()
@@ -115,6 +114,17 @@ def get_zenpy_client(environment: str):
     }
     return Zenpy(**creds)
 
+def prompt_for_environment() -> str:
+    """Prompts the user for the environment and validates the input."""
+    while True:
+        environment = typer.prompt("Is this for production or sandbox? (Enter '0' to go back)",
+                                   default="", show_choices=False)
+        if environment == '0':
+            return 'back'
+        if environment.lower() in ['production', 'sandbox']:
+            return environment.lower()
+        else:
+            print("[bold red]Please enter 'production', 'sandbox', or '0' to go back.[/bold red]")
 
 
 
