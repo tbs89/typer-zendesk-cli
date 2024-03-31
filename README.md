@@ -71,12 +71,22 @@ The application supports both production and sandbox environments, with the sand
         </ul>
 
 
-
+<br>
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/get_data.png" alt="Set Up" width="600">
+<br>
 
 The data is downloaded in CSV in a folder created by the app:
 
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/get_data2.png" alt="Set Up" width="800">
+<br><br><br>
+
+
+
+
+
+
+
+
 
 
 
@@ -88,7 +98,8 @@ The data is downloaded in CSV in a folder created by the app:
     <li><strong>Post Actions</strong>: Create new users, groups, and other entities in bulk.</li>
     <li><strong>ADVANCED</strong>: Perform advanced actions using Zenpy, such as applying macros to tickets and adding tags.</li>
 </ul>
-<p>This structured approach ensures that you can easily navigate and utilize the tool's features without the need to rely on <code>--help</code> commands at every step.</p>
+
+
 
 <h2>Key Commands and Features</h2>
 <p>The Typer Zendesk CLI Tool offers a wide range of commands to streamline your Zendesk management tasks:</p>
