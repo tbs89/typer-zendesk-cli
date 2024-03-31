@@ -50,15 +50,51 @@ The application supports both production and sandbox environments, with the sand
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/api_success.png" alt="Set Up" width="600">
 
 
-<h2>Exploring Admin Actions</h2>
-<p>Once your credentials are set, the 'Admin Actions' menu becomes your central hub for managing Zendesk tasks. Here's an overview into what you can do:</p>
-
+<h2>Navigating the Application</h2>
+<p>Once your credentials are set up, navigate to the <strong>Admin Actions</strong> section from the main menu to explore a variety of tasks you can perform:</p>
 <ul>
-    <li><strong>Get Actions</strong> - Retrieve and display various data from Zendesk, including users, tickets, groups, and more. This is crucial for understanding your current Zendesk setup and making informed decisions.</li>
-    <li><strong>Put Actions</strong> - Modify existing Zendesk configurations, like updating macro permissions. This allows you to refine your workflow and ensure your team has the necessary access.</li>
-    <li><strong>Post Actions</strong> - Create new entities within Zendesk, such as users and groups. This feature is essential for expanding your team and organizing your workspace efficiently.</li>
-    <li><strong>ADVANCED</strong> - Leverage Zenpy-powered actions to apply macros to tickets and tags, streamlining repetitive tasks and enhancing your ticket management process.</li>
+    <li><strong>Get Actions</strong>: Fetch and download as CSV various Zendesk entities such as:</li>
 </ul>
+        <ul>
+            <li><code>Users</code></li>
+            <li><code>Macros</code></li>
+            <li><code>Articles</code></li>
+            <li><code>Organizations</code></li>
+            <li><code>Groups</code></li>
+            <li><code>Dynamic Content</code></li>
+            <li><code>Viewst</code></li>
+            <li><code>Triggers</code></li>
+            <li><code>Automations</code></li>
+            <li><code>Brands</code></li>
+            <li><code>User Fields</code></li>
+            <li><code>Ticket fields</code></li>
+        </ul>
+
+
+<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/get_data.png" alt="Set Up" width="600">
+
+The data is downloaded in CSV in a folder created by the app:
+
+<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/get_data2.png" alt="Set Up" width="800">
+
+
+
+<ul> 
+    <li><strong>Put Actions</strong>: Update existing Zendesk configurations and permissions.</li>
+    <li><strong>Post Actions</strong>: Create new users, groups, and other entities in bulk.</li>
+    <li><strong>ADVANCED</strong>: Perform advanced actions using Zenpy, such as applying macros to tickets and adding tags.</li>
+</ul>
+<p>This structured approach ensures that you can easily navigate and utilize the tool's features without the need to rely on <code>--help</code> commands at every step.</p>
+
+<h2>Key Commands and Features</h2>
+<p>The Typer Zendesk CLI Tool offers a wide range of commands to streamline your Zendesk management tasks:</p>
+<ul>
+    <li><code>get-users</code>: Retrieves and displays a list of Zendesk users.</li>
+    <li><code>create-group</code>: Creates a new group within Zendesk.</li>
+    <li><code>apply-macro</code>: Applies a specified macro to a list of tickets, allowing for efficient bulk updates.</li>
+    <li><code>add-tags</code>: Adds tags to a specified ticket, enhancing ticket organization and filtering.</li>
+</ul>
+<p>These commands represent just the beginning of what the Typer Zendesk CLI Tool can do. Dive into each section within the <strong>Admin Actions</strong> menu to discover more capabilities designed to enhance your Zendesk experience.</p>
 
 <p>The 'Admin Actions' menu is designed for easy navigation, enabling you to execute powerful Zendesk operations without ever needing to use the <code>--help</code> command.</p>
 
