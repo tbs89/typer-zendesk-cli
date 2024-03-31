@@ -4,6 +4,8 @@
 
 <p>The Typer Zendesk CLI Tool was developed using <a href="https://typer.tiangolo.com" target="_blank">Typer</a>, a powerful library for building CLI applications with Python. Typer is created by <a href="https://github.com/tiangolo" target="_blank">Sebastián Ramírez</a>, the same developer behind the popular FastAPI framework. 
 
+
+
 <hr>
   <h2>Features</h2>
     <ul>
@@ -30,8 +32,13 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
 
 <h2>Usage</h2>
 <p>To start using the CLI tool, invoke the main script:</p>
-<pre><code>python app-cli/main.py</code></pre>
+
+```console
+python app-cli/main.py
+```
 <p>This command will display the Main Menu, guiding you through the available commands and options:</p>
+
+
 
 <br><br>
 <img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/main_menu.png" alt="Main Menu" width="400">
