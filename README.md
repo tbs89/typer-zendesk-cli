@@ -218,7 +218,7 @@ Repeat for confirmation:
 Is this for production or sandbox?: production
 ```
 
-<p>Upon entering the credentials (email, API token, and domain), the app initiates an API call to this endpoint: {domain}api/v2/users/me.json. The app verifies the correctness of the credentials by making an API call to check them. If the verification is successful, the app creates a .env file where it stores the credentials from that point forward and uses them for any action:</p>
+<p>Upon entering the credentials (email, API token, and domain), the app initiates an API call to this endpoint: {domain}api/v2/users/me.json. The app verifies the correctness of the credentials by making an API call to check them. If the verification is successful, the app creates a <code>.env</code> file where it stores the credentials from that point forward and uses them for any action:</p>
 
 ```console
 Connection verified successfully!
@@ -242,6 +242,6 @@ Production credentials saved successfully
 <br>
 
 ## Acknowledgements
-<p>I would also like to extend a heartfelt thank you to <a href="https://github.com/tiangolo" target="_blank">Sebastián Ramírez</a>, the creator of Typer, for developing such a cool tool. Your work has not only made building CLI applications more accessible but also significantly enhanced the productivity and capabilities of developers around the world. Thank you for your contribution to the open-source community!</p>
+<p>I would also like to extend a heartfelt thank you to <a href="https://github.com/tiangolo" target="_blank">Sebastián Ramírez</a>, the creator of Typer, for developing such a cool tool. Thank you for your contribution to the open-source community!</p>
 
 
