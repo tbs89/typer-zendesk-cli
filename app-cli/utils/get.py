@@ -7,7 +7,13 @@ import typer
 from rich.progress import Progress
 from rich import print
 import time
+
+
 app = typer.Typer()
+
+
+
+
 
 def fetch_data_with_progress(url: str, environment: str, progress: Progress, task_id: int, data_key: str):
 
@@ -33,12 +39,19 @@ def fetch_data_with_progress(url: str, environment: str, progress: Progress, tas
 
 
 
+
+
+
 def merge_users_and_roles(users: list, roles: list) -> pd.DataFrame:
 
     roles_df = pd.DataFrame(roles).rename(columns={"id": "custom_role_id", "name": "role_name"})
     users_df = pd.DataFrame(users)
     merged_df = pd.merge(users_df, roles_df[['custom_role_id', 'role_name']], on='custom_role_id', how='left')
     return merged_df
+
+
+
+
 
 def reorder_columns(data_frame):
 
@@ -48,6 +61,8 @@ def reorder_columns(data_frame):
         columns.insert(1, columns.pop(columns.index('role_name')))
     data_frame = data_frame[columns]
     return data_frame
+
+
 
 
 
@@ -78,6 +93,9 @@ def prepare_and_save_data(data, data_type, environment):
     time.sleep(4)
 
 
+
+
+
 @app.command()
 def get_users(environment: str):
 
@@ -89,6 +107,10 @@ def get_users(environment: str):
 
     merged_data = merge_users_and_roles(users, roles)
     prepare_and_save_data(merged_data, 'users', environment)
+
+
+
+
 
 @app.command()
 def get_macros(environment: str):
@@ -102,6 +124,10 @@ def get_macros(environment: str):
 
 
 
+
+
+
+
 @app.command()
 def get_articles(environment: str):
 
@@ -110,6 +136,10 @@ def get_articles(environment: str):
         articles = fetch_data_with_progress("/api/v2/help_center/articles.json", environment, progress, task_id, 'articles')
         progress.remove_task(task_id)
     prepare_and_save_data(articles, 'articles', environment)
+
+
+
+
 
 @app.command()
 def get_organizations(environment: str):
@@ -120,6 +150,10 @@ def get_organizations(environment: str):
         progress.remove_task(task_id)
     prepare_and_save_data(organizations, 'organizations', environment)
 
+
+
+
+
 @app.command()
 def get_groups(environment: str):
 
@@ -128,6 +162,10 @@ def get_groups(environment: str):
         groups = fetch_data_with_progress("/api/v2/groups.json", environment, progress, task_id, 'groups')
         progress.remove_task(task_id)
     prepare_and_save_data(groups, 'groups', environment)
+
+
+
+
 
 @app.command()
 def get_dynamic_content(environment: str):
@@ -138,6 +176,10 @@ def get_dynamic_content(environment: str):
         progress.remove_task(task_id)
     prepare_and_save_data(items, 'dynamic_content', environment)
 
+
+
+
+
 @app.command()
 def get_views(environment: str):
 
@@ -146,6 +188,9 @@ def get_views(environment: str):
         views = fetch_data_with_progress("/api/v2/views.json", environment, progress, task_id, 'views')
         progress.remove_task(task_id)
     prepare_and_save_data(views, 'views', environment)
+
+
+
 
 @app.command()
 def get_triggers(environment: str):
@@ -156,6 +201,9 @@ def get_triggers(environment: str):
         progress.remove_task(task_id)
     prepare_and_save_data(triggers, 'triggers', environment)
 
+
+
+
 @app.command()
 def get_automations(environment: str):
 
@@ -164,6 +212,10 @@ def get_automations(environment: str):
         automations = fetch_data_with_progress("/api/v2/automations.json", environment, progress, task_id, 'automations')
         progress.remove_task(task_id)
     prepare_and_save_data(automations, 'automations', environment)
+
+
+
+
 
 @app.command()
 def get_brands(environment: str):
@@ -174,6 +226,10 @@ def get_brands(environment: str):
         progress.remove_task(task_id)
     prepare_and_save_data(brands, 'brands', environment)
 
+
+
+
+
 @app.command()
 def get_user_fields(environment: str):
 
@@ -183,6 +239,10 @@ def get_user_fields(environment: str):
         progress.remove_task(task_id)
     prepare_and_save_data(user_fields, 'user_fields', environment)
 
+
+
+
+
 @app.command()
 def get_ticket_fields(environment: str):
 
@@ -191,6 +251,9 @@ def get_ticket_fields(environment: str):
         ticket_fields = fetch_data_with_progress("/api/v2/ticket_fields.json", environment, progress, task_id, 'ticket_fields')
         progress.remove_task(task_id)
     prepare_and_save_data(ticket_fields, 'ticket_fields', environment)
+
+
+
 
 
 if __name__ == "__main__":
