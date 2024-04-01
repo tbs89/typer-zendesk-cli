@@ -7,7 +7,9 @@ from rich import print
 
 
 app = typer.Typer()
+
 load_dotenv()
+
 
 
 def apply_macro_to_ticket(zenpy_client, ticket_id: int, macro_id: int):
@@ -15,6 +17,7 @@ def apply_macro_to_ticket(zenpy_client, ticket_id: int, macro_id: int):
     macro_result = zenpy_client.tickets.show_macro_effect(ticket_id, macro_id)
     zenpy_client.tickets.update(macro_result.ticket)
     return "Applied" if macro_result.ticket else "Failed"
+
 
 
 @app.command()
@@ -76,6 +79,9 @@ def run_macro_on_tickets(file_name: str, environment: str):
     print(f"[bold green]Bulk Action Done - File Updated {file_path}[/bold green]")
     typer.echo("-----------------------------------------------------------------")
 
+
+
+
 @app.command()
 def apply_tags_to_tickets(file_name: str, environment: str):
 
@@ -119,6 +125,8 @@ def apply_tags_to_tickets(file_name: str, environment: str):
     df.to_csv(file_path, index=False)
     print(f"-----------------------------------------------------------------")
     print(f"[bold green]Tags Applied - File Updated {file_path}[/bold green]")
+
+
 
 
 if __name__ == "__main__":
