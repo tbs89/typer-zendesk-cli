@@ -42,22 +42,21 @@ app = typer.Typer(add_completion=False,
 def prompt_for_environment() -> str:
 
     while True:
-        environment = typer.prompt("Is this for production or sandbox? (Enter '0' to go back)",
-                                   default="", show_choices=False)
+        environment = typer.prompt("Is this for 'production' or 'sandbox'? (Enter '0' to go back)",
+                                show_choices=False)
         if environment == '0':
             return 'back'
         if environment.lower() in ['production', 'sandbox']:
             return environment.lower()
         else:
-            print("[bold red]Please enter 'production', 'sandbox', or '0' to go back.[/bold red]")
-
+            print("[bold red] Please enter 'production', 'sandbox', or '0' to go back.[/bold red]")
 
 
 
 
 def get_data_actions(environment: str):
     while True:
-        print(f"\n[bold blue][{environment.upper()}]Select the data you want to download:[/bold blue]")
+        print(f"\n[bold blue][{environment.upper()}] Select the data you want to download:[/bold blue]")
         typer.echo("---------------------------------------")
         typer.echo("[1] Users [2] Macros [3] Articles [4] Organizations")
         typer.echo("[5] Groups [6] Dynamic Content [7] Views [8] Triggers")
@@ -101,7 +100,7 @@ def get_data_actions(environment: str):
 
 def post_data_actions(environment: str):
     while True:
-        print("\n[bold blue]Select the bulk action you want to perform:[/bold blue]")
+        print(f"\n[bold blue][{environment.upper()}] Select the bulk action you want to perform:[/bold blue]")
         typer.echo("---------------------------------------")
         typer.echo("[1] Groups - Create Groups")
         typer.echo("[2] Groups - Assign Agents to a Group")
@@ -163,7 +162,7 @@ def post_data_actions(environment: str):
 def admin_actions():
     while True:
         typer.echo("-------------------------------------------------")
-        print("[bold blue]Admin Actions:[/bold blue]")
+        print(f"[bold blue]Admin Actions:[/bold blue]")
         typer.echo("[1] Get Actions")
         typer.echo("[2] Put Actions")
         typer.echo("[3] Post Actions")
@@ -219,7 +218,7 @@ def info_actions():
 
 def put_data_actions(environment: str):
     while True:
-        print("\n[bold blue]Select the PUT action you want to perform:[/bold blue]")
+        print(f"\n[bold blue][{environment.upper()}]Select the PUT action you want to perform:[/bold blue]")
         typer.echo("---------------------------------------")
         typer.echo("[1] Macros - Update Permissions")
         print("[bold magenta][0] Go Back[/bold magenta]")
@@ -250,7 +249,7 @@ def put_data_actions(environment: str):
 
 def advanced_data_actions(environment: str):
     while True:
-        print("\n[bold blue]Select the ADVANCED action you want to perform:[/bold blue]")
+        print(f"\n[bold blue][{environment.upper()}] Select the ADVANCED action you want to perform:[/bold blue]")
         typer.echo("---------------------------------------")
         typer.echo("[1] Tickets - Apply Macro to Tickets")
         typer.echo("[2] Tickets - Apply Tags to Tickets")
@@ -313,10 +312,10 @@ def main_menu():
         choice = typer.prompt("Enter your choice", type=int)
 
         if choice == 1:
-            print(f"[bold green] Let's set the credentials [/bold green]")
+            print(f"[bold green]Let's set the credentials[/bold green]")
             credentials_app(['set-credentials'])
         elif choice == 2:
-            print(f"[bold green] Let's update the credentials [/bold green]")
+            print(f"[bold green]Let's update the credentials[/bold green]")
             credentials_app(['update-credentials'])
         elif choice == 3:
             admin_actions()
@@ -329,17 +328,11 @@ def main_menu():
             print(f"[bold yellow]Invalid choice: {choice}, please try again [/bold yellow]")
 
 
-
-
-
 @app.callback(invoke_without_command=True)
 def main(ctx: typer.Context):
-    """
-    This callback is used to display the main menu.
-    """
+
     if ctx.invoked_subcommand is None:
         main_menu()
-
 
 
 

@@ -5,6 +5,7 @@ from zenpy import Zenpy
 from rich import print
 
 
+
 app = typer.Typer()
 
 def save_credentials(email: str, domain: str, token: str, environment: str = "production"):
@@ -38,10 +39,7 @@ def save_credentials(email: str, domain: str, token: str, environment: str = "pr
             for key, value in credentials.items():
                 file.write(f"{key}={value}\n")
 
-    print(f"[bold green]Credentials for {environment} environment saved successfully![/bold green]")
-
-
-
+    print(f"[bold green][{environment.upper()}] Credentials saved in .env file[/bold green]")
 
 
 
@@ -53,24 +51,23 @@ def verify_connection(domain: str, email: str, token: str) -> bool:
 
 
 
-
-
-
 @app.command()
 def set_credentials(
     email: str = typer.Option(..., prompt="Enter your user email"),
     domain_input: str = typer.Option(..., prompt="Enter your company name for the Zendesk domain (example: 'your_company', for 'your_company.zendesk.com')"),
     token: str = typer.Option(..., prompt="Enter your Zendesk API token (it will not appear here)", hide_input=True, confirmation_prompt=True),
-    environment: str = typer.Option("production", prompt="Is this for production or sandbox?")
+    environment: str = typer.Option("Type 'production' or 'sandbox'", prompt="Is this for production or sandbox?"),
 ):
 
     domain = f"https://{domain_input}.zendesk.com/"
     if verify_connection(domain, email, token):
-        print("[bold green]Connection verified successfully![/bold green]")
+        print(f"[bold green][{environment.upper()}] Connection verified successfully![/bold green]")
         save_credentials(email, domain, token, environment)
-        print(f"[bold green]{environment.capitalize()} credentials saved successfully[/bold green]")
+        print(f"[bold green][{environment.upper()}] App is correctly configured[/bold green]")
+        print(f"--------------------------------------------------------------------------------")
+        print(f"[bold green]Run the app again![/bold green]")
     else:
-        print("[bold red]Failed to verify connection with the provided credentials. Please check and try again[/bold red]")
+        print("[bold red]Failed to verify connection with the provided credentials. Run the app and try again[/bold red]")
 
 
 
@@ -99,7 +96,6 @@ def update_credentials():
 
 
 
-
 def get_auth(environment: str):
 
     email = os.getenv(f"ZENDESK_{environment.upper()}_EMAIL")
@@ -107,8 +103,6 @@ def get_auth(environment: str):
     domain = os.getenv(f"ZENDESK_{environment.upper()}_DOMAIN")
     auth = (f"{email}/token", token)
     return auth, domain
-
-
 
 
 
@@ -129,9 +123,6 @@ def get_zenpy_client(environment: str):
 
 
 
-
-
-
 def prompt_for_environment() -> str:
 
     while True:
@@ -143,9 +134,6 @@ def prompt_for_environment() -> str:
             return environment.lower()
         else:
             print("[bold red]Please enter 'production', 'sandbox', or '0' to go back.[/bold red]")
-
-
-
 
 
 

@@ -14,7 +14,6 @@ app = typer.Typer()
 
 
 
-
 def fetch_data_with_progress(url: str, environment: str, progress: Progress, task_id: int, data_key: str):
 
     load_dotenv()
@@ -22,6 +21,11 @@ def fetch_data_with_progress(url: str, environment: str, progress: Progress, tas
     token = os.getenv(f"ZENDESK_{environment.upper()}_TOKEN")
     domain = os.getenv(f"ZENDESK_{environment.upper()}_DOMAIN")
     full_url = f"{domain}{url}"
+
+    if not all([email, token, domain]):
+        print(f"[bold red][{environment.upper()}] You did not set the credentials for this environment yet[/bold red]")
+        print(f"Please review the credentials for the environment {environment}]")
+        return None
 
     results = []
     while full_url:
@@ -100,9 +104,20 @@ def prepare_and_save_data(data, data_type, environment):
 def get_users(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading users...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}][cyan]Downloading users...", total=None)
         users = fetch_data_with_progress("/api/v2/users.json?role[]=admin&role[]=agent", environment, progress, task_id, 'users')
+
+        if users == None:
+            print(f"[bold red][{environment.upper()}] No users found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         roles = fetch_data_with_progress("/api/v2/custom_roles.json", environment, progress, task_id, 'custom_roles')
+
+        if roles == None:
+            print(f"[{environment.upper()}][bold red] No roles found in this environment[/bold red]")
+            return
+
         progress.remove_task(task_id)
 
     merged_data = merge_users_and_roles(users, roles)
@@ -116,13 +131,17 @@ def get_users(environment: str):
 def get_macros(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading macros...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading macros...", total=None)
         macros = fetch_data_with_progress("/api/v2/macros.json", environment, progress, task_id, 'macros')
+
+        if macros == None:
+            print(f"[bold red][{environment.upper()}] No macros found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
 
     prepare_and_save_data(macros, 'macros', environment)
-
-
 
 
 
@@ -132,38 +151,48 @@ def get_macros(environment: str):
 def get_articles(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading articles...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading articles...", total=None)
         articles = fetch_data_with_progress("/api/v2/help_center/articles.json", environment, progress, task_id, 'articles')
+
+        if articles == None:
+            print(f"[bold red][{environment.upper()}] No articles found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
     prepare_and_save_data(articles, 'articles', environment)
-
-
-
 
 
 @app.command()
 def get_organizations(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading organizations...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading organizations...", total=None)
         organizations = fetch_data_with_progress("/api/v2/organizations.json", environment, progress, task_id, 'organizations')
+
+        if organizations == None:
+            print(f"[bold red][{environment.upper()}] No organizations found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
     prepare_and_save_data(organizations, 'organizations', environment)
-
-
-
 
 
 @app.command()
 def get_groups(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading groups...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading groups...", total=None)
         groups = fetch_data_with_progress("/api/v2/groups.json", environment, progress, task_id, 'groups')
+
+        if groups == None:
+            print(f"[bold red][{environment.upper()}] No groups found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
     prepare_and_save_data(groups, 'groups', environment)
-
-
 
 
 
@@ -171,12 +200,16 @@ def get_groups(environment: str):
 def get_dynamic_content(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading dynamic content items...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading dynamic content items...", total=None)
         items = fetch_data_with_progress("/api/v2/dynamic_content/items.json", environment, progress, task_id, 'items')
+
+        if items == None:
+            print(f"[bold red][{environment.upper()}] No dynamic content found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
     prepare_and_save_data(items, 'dynamic_content', environment)
-
-
 
 
 
@@ -184,36 +217,48 @@ def get_dynamic_content(environment: str):
 def get_views(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading views...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading views...", total=None)
         views = fetch_data_with_progress("/api/v2/views.json", environment, progress, task_id, 'views')
+
+        if views == None:
+            print(f"[bold red][{environment.upper()}] No views found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
     prepare_and_save_data(views, 'views', environment)
-
-
 
 
 @app.command()
 def get_triggers(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading triggers...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading triggers...", total=None)
         triggers = fetch_data_with_progress("/api/v2/triggers.json", environment, progress, task_id, 'triggers')
+
+        if triggers == None:
+            print(f"[bold red][{environment.upper()}] No triggers found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
     prepare_and_save_data(triggers, 'triggers', environment)
-
-
 
 
 @app.command()
 def get_automations(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading automations...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading automations...", total=None)
         automations = fetch_data_with_progress("/api/v2/automations.json", environment, progress, task_id, 'automations')
+
+        if automations == None:
+            print(f"[bold red][{environment.upper()}] No automations found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
     prepare_and_save_data(automations, 'automations', environment)
-
-
 
 
 
@@ -221,12 +266,16 @@ def get_automations(environment: str):
 def get_brands(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading brands...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading brands...", total=None)
         brands = fetch_data_with_progress("/api/v2/brands.json", environment, progress, task_id, 'brands')
+
+        if brands == None:
+            print(f"[bold red][{environment.upper()}] No brands found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
     prepare_and_save_data(brands, 'brands', environment)
-
-
 
 
 
@@ -234,12 +283,16 @@ def get_brands(environment: str):
 def get_user_fields(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading user fields...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading user fields...", total=None)
         user_fields = fetch_data_with_progress("/api/v2/user_fields.json", environment, progress, task_id, 'user_fields')
+
+        if user_fields == None:
+            print(f"[bold red][{environment.upper()}] No user fields found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
     prepare_and_save_data(user_fields, 'user_fields', environment)
-
-
 
 
 
@@ -247,12 +300,16 @@ def get_user_fields(environment: str):
 def get_ticket_fields(environment: str):
 
     with Progress() as progress:
-        task_id = progress.add_task("[cyan]Downloading ticket fields...", total=None)
+        task_id = progress.add_task(f"[{environment.upper()}] [cyan]Downloading ticket fields...", total=None)
         ticket_fields = fetch_data_with_progress("/api/v2/ticket_fields.json", environment, progress, task_id, 'ticket_fields')
+
+        if ticket_fields == None:
+            print(f"[bold red][{environment.upper()}] No ticket fields found in this environment[/bold red]")
+            progress.remove_task(task_id)
+            return
+
         progress.remove_task(task_id)
     prepare_and_save_data(ticket_fields, 'ticket_fields', environment)
-
-
 
 
 

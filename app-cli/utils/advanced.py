@@ -51,7 +51,7 @@ def run_macro_on_tickets(file_name: str, environment: str):
             print(f"[bold magenta]Test result: {result}[/bold magenta]")
             print(f"[bold magenta]Check the ticket at: {ticket_link}[/bold magenta]")
             print(f"---------------------------------------------------------------------")
-            if not typer.confirm("Do you want to continue applying macros to the full list of tickets?"):
+            if not typer.confirm(f"[{environment.upper()}] Do you want to continue applying macros to the full list of tickets?"):
                 typer.echo("Operation aborted.")
                 return
         except ValueError:
@@ -69,14 +69,14 @@ def run_macro_on_tickets(file_name: str, environment: str):
             result = apply_macro_to_ticket(zenpy_client, ticket_id, macro_id)
             df.at[index, 'result'] = result
             print(
-                f"[green]Macro Applied to {row['ticket_id']} - Check >> https://{subdomain}.zendesk.com/agent/tickets/{ticket_id}[/green]")
+                f"[green][{environment.upper()}] Macro Applied to {row['ticket_id']} - Check >> https://{subdomain}.zendesk.com/agent/tickets/{ticket_id}[/green]")
         except Exception as e:
             df.at[index, 'result'] = f"Failed: {e}"
             print(f"[bold yellow]Failed: {row['ticket_id']} - {e}[/bold yellow]")
 
     df.to_csv(file_path, index=False)
     typer.echo("-----------------------------------------------------------------")
-    print(f"[bold green]Bulk Action Done - File Updated {file_path}[/bold green]")
+    print(f"[bold green][{environment.upper()}] Bulk Action Done - File Updated {file_path}[/bold green]")
     typer.echo("-----------------------------------------------------------------")
 
 
@@ -99,7 +99,7 @@ def apply_tags_to_tickets(file_name: str, environment: str):
         print(f"[bold blue]Download the CSV template and try again: https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/templates/apply_tags_template.csv[/bold blue]")
         return
 
-    print(f"[bold blue]You are about to tags the tickets[/bold blue]")
+    print(f"[bold blue][{environment.upper()}] You are about to tags the tickets[/bold blue]")
 
     if not typer.confirm("Do you want to proceed?", default=False):
         print("[bold red]Operation cancelled.[/bold red]")
@@ -124,7 +124,7 @@ def apply_tags_to_tickets(file_name: str, environment: str):
 
     df.to_csv(file_path, index=False)
     print(f"-----------------------------------------------------------------")
-    print(f"[bold green]Tags Applied - File Updated {file_path}[/bold green]")
+    print(f"[bold green][{environment.upper()}] Tags Applied - File Updated {file_path}[/bold green]")
 
 
 

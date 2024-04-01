@@ -12,9 +12,6 @@ load_dotenv()
 
 
 
-
-
-
 def create_groups(file_name: str, environment: str):
 
     auth, domain = get_auth(environment)
@@ -32,10 +29,10 @@ def create_groups(file_name: str, environment: str):
                 "[Download CSV Template: https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/templates/create_groups_template.csv]")
             return
 
-        typer.echo("You are about to create the following groups:")
+        typer.echo(f"[{environment.upper()}] You are about to create the following groups:")
         for index, row in df.iterrows():
             typer.echo(f"- {row['group_name']}")
-        if not typer.confirm("Are you sure you want to proceed?"):
+        if not typer.confirm(f"[{environment.upper()}] Are you sure you want to proceed?"):
             print("[bold yellow]Operation cancelled.[/bold yellow]")
             return
 
@@ -56,7 +53,7 @@ def create_groups(file_name: str, environment: str):
                 print(f"[bold red]Failed to create group '{group_name}': {response.text}[/bold red]")
 
         df.to_csv(file_path, index=False)
-        print(f"[bold green]File updated with group IDs at {file_path}[/bold green]")
+        print(f"[bold green][{environment.upper()}] File updated with group IDs at {file_path}[/bold green]")
     except FileNotFoundError:
         print(f"[bold yellow]File '{file_name}' not found.[/bold yellow]")
 
@@ -80,8 +77,8 @@ def assign_agents_to_group(file_name: str, group_id: int, environment: str):
             print("[bold red]Failed to fetch group information.[/bold red]")
             return
 
-        print(f"[bold blue]You are about to assign agents to the group: {group_name}[/bold blue]")
-        if not typer.confirm("Are you sure you want to proceed?"):
+        print(f"[bold blue][{environment.upper()}] You are about to assign agents to the group: {group_name}[/bold blue]")
+        if not typer.confirm(f"[{environment.upper()}] Are you sure you want to proceed?"):
             print("[bold yellow]Operation cancelled.[/bold yellow]")
             return
 
@@ -113,7 +110,7 @@ def assign_agents_to_group(file_name: str, group_id: int, environment: str):
                 print(f"[bold yellow]Failed to find user ID for email: {email}[/bold yellow]")
 
         df.to_csv(file_path, index=False)
-        print(f"[bold green]CSV file updated with group memberships at {file_path}[/bold green]")
+        print(f"[bold green][{environment.upper()}] CSV file updated with group memberships at {file_path}[/bold green]")
     except FileNotFoundError:
         print(f"[bold red]File '{file_name}' not found [/bold red]")
 
@@ -152,11 +149,11 @@ def create_agents_in_bulk(file_name: str, environment: str):
 
             return
 
-        typer.echo("You are about to create the following agents:")
+        typer.echo(f"[{environment.upper()}] You are about to create the following agents:")
         for index, row in df.iterrows():
             typer.echo(f"- {row['name']} - {row['email']} - {row['custom_role_id']}")
 
-        if not typer.confirm("Are you sure you want to proceed?", default=False):
+        if not typer.confirm(f"[{environment.upper()}]Are you sure you want to proceed?", default=False):
             print("[bold red]Operation cancelled [/bold red]")
             return
 
@@ -185,7 +182,7 @@ def create_agents_in_bulk(file_name: str, environment: str):
 
         df.to_csv(file_path, index=False)
         typer.echo("-----------------------------------------------------------------")
-        print(f"[bold green]CSV file updated with creation status at {file_path}[/bold green]")
+        print(f"[bold green][{environment.upper()}] CSV file updated with creation status at {file_path}[/bold green]")
     except FileNotFoundError:
         print(f"[bold yellow]File '{file_name}' not found [/bold yellow]")
 
