@@ -1,20 +1,155 @@
 <body>
     <h1>Typer Zendesk CLI Tool</h1>
-    <p>Typer Zendesk CLI Tool is a powerful command-line interface application designed to facilitate the management of Zendesk Admin tasks. It leverages the flexibility of Typer and the comprehensive API provided by Zendesk to offer a seamless user experience for managing tickets, users, groups, and more directly from your terminal.</p>
+    <p>Typer Zendesk CLI Tool is a powerful command-line interface application designed to facilitate the management of Zendesk Admin tasks. The app allows interaction with the Zendesk API to carry out actions such as data download, ticket updates, users, bulk actions, and more.</p>
 
-<p>The Typer Zendesk CLI Tool was developed using <a href="https://typer.tiangolo.com" target="_blank">Typer</a>, a powerful library for building CLI applications with Python. Typer is created by <a href="https://github.com/tiangolo" target="_blank">Sebastián Ramírez</a>, the same developer behind the popular FastAPI framework. 
-
-
+<p>Typer Zendesk CLI has been developed using <a href="https://typer.tiangolo.com" target="_blank">Typer</a>, a powerful library for building CLI applications with Python. Typer was created by <a href="https://github.com/tiangolo" target="_blank">Sebastián Ramírez</a>, the same developer behind the popular FastAPI framework. 
 
 <hr>
-  <h2>Features</h2>
-    <ul>
-        <li>Fetch and display Zendesk data such as users, tickets, and groups.</li>
-        <li>Create and manage users and groups in bulk.</li>
-        <li>Apply macros and tags to tickets efficiently.</li>
-        <li>Update Zendesk configurations and permissions with ease.</li>
-        <li>Support for both sandbox and production environments.</li>
-    </ul>
+
+
+## Table of Contents
+1. [Introduction](#introduction)
+2. [As a Zendesk Administrator, What You Can Do with Typer Zendesk CLI](#as-a-zendesk-administrator-what-you-can-do-with-typer-zendesk-cli)
+3. [Download](#download)
+4. [Creation](#creation)
+5. [Update](#update)
+6. [Advanced - Bulk Actions](#advanced---bulk-actions)
+7. [Production or Sandbox](#production-or-sandbox)
+8. [Easy Navigation](#easy-navigation)
+9. [Installation](#installation)
+10. [Setting Up](#setting-up)
+11. [Usage](#usage)
+12. [Getting Started](#getting-started)
+13. [Contribution and Contact](#contribution-and-contact)
+14. [License](#license)
+15. [Acknowledgements](#acknowledgements)
+
+<hr>
+
+<br><br><br>
+
+  <h2>As a Zendesk Administrator, what you can do with Typer Zendesk CLI</h2>
+  <p>Zendesk administrators typically carry out daily tasks from the Zendesk UI itself. However, there are certain actions where the Zendesk UI is limited and must be carried out using the API.
+
+Actions such as obtaining the list of agents with their information (email, role name, etc.), downloading Help Center articles, applying a macro given a list of ticket IDs, assigning a group to a long list of agents, changing macro permissions, etc.
+
+Getting the list of agents or macros in CSV format can only be obtained through the API, as well as obtaining Help Center articles. On the other hand, Zendesk allows applying macros to tickets, but only up to 100 tickets per action and all must be in a view. Also, changing macro permissions or assigning a group to a long list of agents can be tedious and time-consuming, as well as creating a long list of Zendesk agents with their corresponding role.
+<br><br>
+
+<p>Typer Zendesk CLI allows Admins to perform all these actions in a matter of seconds:</p>
+<br>
+
+## DOWNLOAD
+<b><code>DOWNLOAD</code></b>
+<br>
+- Download lists of agents, groups, macros, triggers, articles, etc.
+<br><br>
+
+```console
+[PRODUCTION] Select the data you want to download:
+---------------------------------------
+[1] Users [2] Macros [3] Articles [4] Organizations
+[5] Groups [6] Dynamic Content [7] Views [8] Triggers
+[9] Automations [10] Brands [11] User Fields [12] Ticket Fields
+[13] Go Back
+Enter your choice: 
+
+```
+
+By selecting the data we want to download, the app will do so in a matter of seconds in CSV format:
+
+```console
+[PRODUCTION] Select the data you want to download:
+---------------------------------------
+[1] Users [2] Macros [3] Articles [4] Organizations
+[5] Groups [6] Dynamic Content [7] Views [8] Triggers
+[9] Automations [10] Brands [11] User Fields [12] Ticket Fields
+[13] Go Back
+Enter your choice: 1
+
+✅ - Users data saved successfully to typer_data/get_data/users/production/zd_users_production_2024-04-01_11-58-14.csv
+
+```
+
+The CSV file will be ready for use in spreadsheets or excel.
+<br><br>
+<hr>
+
+<b><code>CREATION</code></b>
+<br>
+- Bulk create groups or agents with their corresponding role, as well as assign them to groups.
+
+
+```console
+[PRODUCTION] Select the bulk action you want to perform:
+---------------------------------------
+[1] Groups - Create Groups
+[2] Groups - Assign Agents to a Group
+[3] Users - Create Agents
+[0] Go Back
+Enter your choice:
+```
+<br><br>
+<hr>
+<b><code>UPDATE</code></b>
+<br>
+
+- Bulk update macros permissions, such as restricting the use of macros to certain groups, or conversely, allowing all macros to be visible.
+<br><br>
+
+```console
+[PRODUCTION] Select the PUT action you want to perform:
+---------------------------------------
+[1] Macros - Update Permissions
+[0] Go Back
+Enter your choice:
+```
+<br><br>
+<hr>
+<b><code>ADVANCED - BULK ACTIONS</code></b>
+<br>
+
+- Apply a macro to a large list of tickets or simply add a tag to them by providing a CSV file.
+
+```console
+[PRODUCTION] Select the ADVANCED action you want to perform:
+---------------------------------------
+[1] Tickets - Apply Macro to Tickets
+[2] Tickets - Apply Tags to Tickets
+[0] Go Back
+Enter your choice:
+```
+<br><br>
+<hr>
+<b><code>PRODUCTION</code> or <code>SANDBOX</code></b>
+<br>
+
+- The app allows interaction both in production and in the sandbox, enabling switching between both environments to test bulk actions or updates on tickets, groups, or users before going to production.
+
+```console
+Is this for production or sandbox? (Enter '0' to go back):
+```
+<br><br>
+<hr>
+
+
+
+<h2>Easy Navigation</h2>
+    <p>The Typer Zendesk CLI is designed with user experience in mind, offering an intuitive navigation system that guides the user through each step without the constant need to resort to <code>--help</code> for guidance.</p>
+
+
+```console
+Main Menu:
+[1] Set up Zendesk credentials
+[2] Update Zendesk credentials
+[3] Admin Actions
+-------------------------------------------------
+[4] Documentation
+[0] Exit App >>
+Enter your choice:
+```
+
+<hr>
 
 <h2>Installation</h2>
 <p>To use the Typer Zendesk CLI Tool, first clone or download the repository from GitHub:</p>
@@ -34,107 +169,75 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
 <p>To start using the CLI tool, invoke the main script:</p>
 
 ```console
-python app-cli/main.py
-```
-<p>This command will display the Main Menu, guiding you through the available commands and options:</p>
+(venv) (base) tomasbaidal@MBP-de-Tomas app-cli % python main.py
 
+Main Menu:
+[1] Set up Zendesk credentials
+[2] Update Zendesk credentials
+[3] Admin Actions
+-------------------------------------------------
+[4] Documentation
+[0] Exit App >>
+Enter your choice:
+```
+<p>This command will display the Main Menu, guiding you through the available commands and options.</p>
 
 
 <br><br>
-<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/main_menu.png" alt="Main Menu" width="400">
-
-  <h2>Easy Navigation</h2>
-    <p>The Typer Zendesk CLI is designed with user experience in mind, offering an intuitive navigation system that guides you through each step. This approach ensures that you can access all functionalities easily, without the constant need to resort to <code>--help</code> for guidance.</p>
 
 <h2>Getting Started</h2>
-<p>Before diving into the commands and functionalities, you need to set up your credentials. Navigate to 'Set up Zendesk credentials' from the Main Menu and provide your Zendesk email, domain, and API token. 
-<br><br><br>
-<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/setup_api.png" alt="Set Up" width="800">
-<br><br><br>
-The application supports both production and sandbox environments, with the sandbox being optional for a safer testing ground.</p>
+<p>Before using the commands and functionalities, you need to set up your credentials. Navigate to <strong>'Set up Zendesk credentials'</strong> from the Main Menu and provide your Zendesk email, domain, and API token. 
+    
+```console
+Main Menu:
+[1] Set up Zendesk credentials
+[2] Update Zendesk credentials
+[3] Admin Actions
+-------------------------------------------------
+[4] Documentation
+[0] Exit App >>
+Enter your choice: 1
+Let's set the credentials
+Enter your user email: 
+```
 
-<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/setup_api2.png" alt="Set Up" width="800">
-<br>
-
-
-<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/api_success.png" alt="Set Up" width="600">
-<br><br><br>
-<hr>
-<h2>Navigating the Application</h2>
-<p>Once your credentials are set up, navigate to the <strong>Admin Actions</strong> section from the main menu to explore a variety of tasks you can perform:</p>
-<ul>
-    <li><strong>Get Actions</strong>: Fetch and download as CSV various Zendesk entities such as:</li>
-</ul>
-        <ul>
-    <li><code>Users</code>: Download a list of all users including agents and administrators.</li>
-    <li><code>Macros</code>: Fetch all the macros set up for ticket responses and actions.</li>
-    <li><code>Articles</code>: Retrieve all articles from your Zendesk Help Center.</li>
-    <li><code>Organizations</code>: Get a list of all organizations added to your Zendesk.</li>
-    <li><code>Groups</code>: Download details of agent groups for managing tickets.</li>
-    <li><code>Dynamic Content</code>: Fetch all dynamic content items for use in tickets and help center articles.</li>
-    <li><code>Views</code>: Retrieve all views that define ticket lists based on certain criteria.</li>
-    <li><code>Triggers</code>: Download all triggers that automatically perform actions on tickets.</li>
-    <li><code>Automations</code>: Fetch automations that perform actions on tickets after certain conditions have been met over time.</li>
-    <li><code>Brands</code>: Get a list of all brands managed within your Zendesk instance.</li>
-    <li><code>User Fields</code>: Download custom fields added to user profiles.</li>
-    <li><code>Ticket Fields</code>: Retrieve custom fields added to tickets for additional data collection.</li>
-        </ul>
+<p>The application will prompt you to enter your user email, domain, API Token, and environment</p>
 
 
-<br>
-<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/get_data.png" alt="Set Up" width="600">
-<br>
+```console
+Enter your choice: 1
+Let's set the credentials
+Enter your user email: name.surname@me.com
+Enter your company name for the Zendesk domain (example: 'your_company', for 'your_company.zendesk.com'): mycompany
+Enter your Zendesk API token (it will not appear here):
+Repeat for confirmation:
+Is this for production or sandbox?: production
+```
 
-The data is downloaded in CSV in a folder created by the app:
+<p>Upon entering the credentials (email, API token, and domain), the app initiates an API call to this endpoint: {domain}api/v2/users/me.json. The app verifies the correctness of the credentials by making an API call to check them. If the verification is successful, the app creates a .env file where it stores the credentials from that point forward and uses them for any action:</p>
 
-<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/get_data2.png" alt="Set Up" width="800">
-<br><br><br>
+```console
+Connection verified successfully!
+Credentials for production environment saved successfully!
+Production credentials saved successfully
+```
 
+<p>Credentials can also be modified in option <b>[2] Update Zendesk Credentials</b> or you can simply delete them by removing the <code>.env</code> file</p>
 
-
-<ul>
-    <li>
-        <strong>Put Actions</strong>: This feature enables the modification of existing permissions for macros within your Zendesk environment. You can specifically define the access control for macros, determining which user groups can utilize them for automated responses. This section facilitates both the restriction of macros to selected groups for focused use and the opening of macros for access by all users.
-    </li>
-</ul>
-
-<br><br>
-<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/update_macros_put.png" alt="Set Up" width="800">
-<br><br><br>
-
-<ul>
-    <li>
-        <strong>Post Actions</strong>: Facilitate bulk creation of users, groups, and other Zendesk entities to streamline administrative tasks. This functionality is ideal for large-scale deployments or organizational changes, enabling you to efficiently onboard new users, establish groups for better collaboration, and add other necessary entities with minimal manual input.
-    </li>
-</ul>
-
-<br><br>
-<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/post_options.png" alt="Set Up" width="600">
-<br><br><br>
- <ul>   
-    <li>
-        <strong>ADVANCED</strong>: Using <a href="http://docs.facetoe.com.au/zenpy.html">Zenpy</a> for more management of tickets, including the application of macros and the addition of tags to tickets by giving a list of tickets, the user can apply macros directly to tickets.
-    </li>
-</ul>
-
-<br><br>
-<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/advanced.png" alt="Set Up" width="600">
-
-<br><br><br>
-
-
-<img src="https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/screenshots/admin_actions.png" alt="Set Up" width="400">
-<br><br><br>
 <hr>
 
-  <h2>Contribution</h2>
-    <p>Contributions to the Typer Zendesk CLI Tool are welcome! Feel free to fork the repository, make your changes, and submit a pull request.</p>
+
+  <h2>Contribution and Contact</h2>
+<p>Contributions to the Typer Zendesk CLI Tool are welcome! Feel free to fork the repository, make your changes, and submit a pull request. The app includes functionalities that I use in my day-to-day activities, but if you have any suggestions or additional features you'd like to see, just open an issue, and I will consider expanding the app's capabilities.</p>
+<p>For questions, suggestions, or issues, please open an issue on the GitHub repository.</p>
+
 
   <h2>License</h2>
-    <p>The Typer Zendesk CLI Tool is released under the MIT License. See the LICENSE file for more details.</p>
+    <p>The <strong>Typer Zendesk CLI Tool</strong> is released under the MIT License. See the LICENSE file for more details.</p>
 
-  <h2>Contact</h2>
-    <p>For questions, suggestions, or issues, please open an issue on the GitHub repository.</p>
-</body>
+<br>
+
+<h2>Acknowledgements</h2>
+<p>I would also like to extend a heartfelt thank you to <a href="https://github.com/tiangolo" target="_blank">Sebastián Ramírez</a>, the creator of Typer, for developing such a cool tool. Your work has not only made building CLI applications more accessible but also significantly enhanced the productivity and capabilities of developers around the world. Thank you for your contribution to the open-source community!</p>
 
 
