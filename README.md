@@ -41,6 +41,7 @@ Getting the list of agents or macros in CSV format can only be obtained through 
 
 ## DOWNLOAD
 <br>
+
 - Download lists of agents, groups, macros, triggers, articles, etc.
 <br><br>
 
@@ -76,6 +77,7 @@ The CSV file will be ready for use in spreadsheets or excel.
 
 ## CREATION
 <br>
+
 - Bulk create groups or agents with their corresponding role, as well as assign them to groups.
 
 
