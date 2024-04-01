@@ -27,7 +27,6 @@
 
 <hr>
 
-<br><br><br>
 
 ## As a Zendesk Administrator, What You Can Do with Typer Zendesk CLI
   <p>Zendesk administrators typically carry out daily tasks from the Zendesk UI itself. However, there are certain actions where the Zendesk UI is limited and must be carried out using the API.
