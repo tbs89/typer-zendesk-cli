@@ -233,7 +233,7 @@ Production credentials saved successfully
 
 
 ## License
-    <p>The <strong>Typer Zendesk CLI Tool</strong> is released under the MIT License. See the LICENSE file for more details.</p>
+<p>The <strong>Typer Zendesk CLI Tool</strong> is released under the MIT License. See the LICENSE file for more details.</p>
 
 <br>
 
