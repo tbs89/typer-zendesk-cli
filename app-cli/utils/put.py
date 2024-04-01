@@ -8,10 +8,14 @@ import json
 from rich import print
 
 app = typer.Typer()
+
 load_dotenv()
 
 
+
+
 def update_macro_permissions(file_name: str, environment: str):
+    
     auth, domain = get_auth(environment)
 
     dir_path = '../typer_data/put_data/update_permissions_macros/'
@@ -53,6 +57,8 @@ def update_macro_permissions(file_name: str, environment: str):
         print(f"[bold yellow]File '{file_name}' not found.[/bold yellow]")
     except ValueError as e:
         print(f"[bold red]Error processing file: {e}. Please ensure your 'group_id' values are valid group ID#s or 'open' to open access.[/bold red]")
+
+
 
 
 
