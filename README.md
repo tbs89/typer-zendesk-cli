@@ -1,5 +1,6 @@
+# Typer Zendesk CLI Tool
+
 <body>
-    <h1>Typer Zendesk CLI Tool</h1>
     <p>Typer Zendesk CLI Tool is a powerful command-line interface application designed to facilitate the management of Zendesk Admin tasks. The app allows interaction with the Zendesk API to carry out actions such as data download, ticket updates, users, bulk actions, and more.</p>
 
 <p>Typer Zendesk CLI has been developed using <a href="https://typer.tiangolo.com" target="_blank">Typer</a>, a powerful library for building CLI applications with Python. Typer was created by <a href="https://github.com/tiangolo" target="_blank">Sebastián Ramírez</a>, the same developer behind the popular FastAPI framework. 
@@ -28,7 +29,7 @@
 
 <br><br><br>
 
-  <h2>As a Zendesk Administrator, what you can do with Typer Zendesk CLI</h2>
+## As a Zendesk Administrator, What You Can Do with Typer Zendesk CLI
   <p>Zendesk administrators typically carry out daily tasks from the Zendesk UI itself. However, there are certain actions where the Zendesk UI is limited and must be carried out using the API.
 
 Actions such as obtaining the list of agents with their information (email, role name, etc.), downloading Help Center articles, applying a macro given a list of ticket IDs, assigning a group to a long list of agents, changing macro permissions, etc.
@@ -40,7 +41,6 @@ Getting the list of agents or macros in CSV format can only be obtained through 
 <br>
 
 ## DOWNLOAD
-<b><code>DOWNLOAD</code></b>
 <br>
 - Download lists of agents, groups, macros, triggers, articles, etc.
 <br><br>
@@ -75,7 +75,7 @@ The CSV file will be ready for use in spreadsheets or excel.
 <br><br>
 <hr>
 
-<b><code>CREATION</code></b>
+## CREATION
 <br>
 - Bulk create groups or agents with their corresponding role, as well as assign them to groups.
 
@@ -91,7 +91,7 @@ Enter your choice:
 ```
 <br><br>
 <hr>
-<b><code>UPDATE</code></b>
+## UPDATE
 <br>
 
 - Bulk update macros permissions, such as restricting the use of macros to certain groups, or conversely, allowing all macros to be visible.
@@ -106,7 +106,7 @@ Enter your choice:
 ```
 <br><br>
 <hr>
-<b><code>ADVANCED - BULK ACTIONS</code></b>
+## ADVANCED - BULK ACTIONS
 <br>
 
 - Apply a macro to a large list of tickets or simply add a tag to them by providing a CSV file.
@@ -121,7 +121,7 @@ Enter your choice:
 ```
 <br><br>
 <hr>
-<b><code>PRODUCTION</code> or <code>SANDBOX</code></b>
+## PRODUCTION OR SANDBOX
 <br>
 
 - The app allows interaction both in production and in the sandbox, enabling switching between both environments to test bulk actions or updates on tickets, groups, or users before going to production.
@@ -134,7 +134,7 @@ Is this for production or sandbox? (Enter '0' to go back):
 
 
 
-<h2>Easy Navigation</h2>
+## Easy Navigation
     <p>The Typer Zendesk CLI is designed with user experience in mind, offering an intuitive navigation system that guides the user through each step without the constant need to resort to <code>--help</code> for guidance.</p>
 
 
@@ -151,12 +151,12 @@ Enter your choice:
 
 <hr>
 
-<h2>Installation</h2>
+## Installation
 <p>To use the Typer Zendesk CLI Tool, first clone or download the repository from GitHub:</p>
 <pre><code>git clone https://github.com/tbs89/typer-zendesk-cli.git</code></pre>
 <p>Alternatively, you can download the repository as a ZIP file and extract it.</p>
 
-<h2>Setting Up</h2>
+## Setting Up
 <p>Navigate to the project directory:</p>
 <pre><code>cd typer-zendesk-cli</code></pre>
 <p>It's recommended to use a virtual environment. Create and activate one with:</p>
@@ -165,7 +165,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
 <p>Install the required dependencies:</p>
 <pre><code>pip install -r requirements.txt</code></pre>
 
-<h2>Usage</h2>
+## Usage
 <p>To start using the CLI tool, invoke the main script:</p>
 
 ```console
@@ -185,7 +185,7 @@ Enter your choice:
 
 <br><br>
 
-<h2>Getting Started</h2>
+## Getting Started
 <p>Before using the commands and functionalities, you need to set up your credentials. Navigate to <strong>'Set up Zendesk credentials'</strong> from the Main Menu and provide your Zendesk email, domain, and API token. 
     
 ```console
@@ -227,17 +227,17 @@ Production credentials saved successfully
 <hr>
 
 
-  <h2>Contribution and Contact</h2>
+## Contribution and Contact
 <p>Contributions to the Typer Zendesk CLI Tool are welcome! Feel free to fork the repository, make your changes, and submit a pull request. The app includes functionalities that I use in my day-to-day activities, but if you have any suggestions or additional features you'd like to see, just open an issue, and I will consider expanding the app's capabilities.</p>
 <p>For questions, suggestions, or issues, please open an issue on the GitHub repository.</p>
 
 
-  <h2>License</h2>
+## License
     <p>The <strong>Typer Zendesk CLI Tool</strong> is released under the MIT License. See the LICENSE file for more details.</p>
 
 <br>
 
-<h2>Acknowledgements</h2>
+## Acknowledgements
 <p>I would also like to extend a heartfelt thank you to <a href="https://github.com/tiangolo" target="_blank">Sebastián Ramírez</a>, the creator of Typer, for developing such a cool tool. Your work has not only made building CLI applications more accessible but also significantly enhanced the productivity and capabilities of developers around the world. Thank you for your contribution to the open-source community!</p>
 
 
