@@ -90,7 +90,6 @@ def get_users(environment: str):
     merged_data = merge_users_and_roles(users, roles)
     prepare_and_save_data(merged_data, 'users', environment)
 
-# Ejemplo para get_macros adaptado
 @app.command()
 def get_macros(environment: str):
 
