@@ -41,11 +41,20 @@ def save_credentials(email: str, domain: str, token: str, environment: str = "pr
     print(f"[bold green]Credentials for {environment} environment saved successfully![/bold green]")
 
 
+
+
+
+
 def verify_connection(domain: str, email: str, token: str) -> bool:
 
     test_url = f"{domain}api/v2/users/me.json"
     response = requests.get(test_url, auth=(f"{email}/token", token))
     return response.status_code in range(200, 299)
+
+
+
+
+
 
 @app.command()
 def set_credentials(
@@ -62,6 +71,11 @@ def set_credentials(
         print(f"[bold green]{environment.capitalize()} credentials saved successfully[/bold green]")
     else:
         print("[bold red]Failed to verify connection with the provided credentials. Please check and try again[/bold red]")
+
+
+
+
+
 
 @app.command()
 def update_credentials():
@@ -81,6 +95,11 @@ def update_credentials():
     else:
         print("❌ - [bold red]Failed to verify connection with the provided credentials. Please check and try again[/bold red]")
 
+
+
+
+
+
 def get_auth(environment: str):
 
     email = os.getenv(f"ZENDESK_{environment.upper()}_EMAIL")
@@ -88,6 +107,10 @@ def get_auth(environment: str):
     domain = os.getenv(f"ZENDESK_{environment.upper()}_DOMAIN")
     auth = (f"{email}/token", token)
     return auth, domain
+
+
+
+
 
 def get_zenpy_client(environment: str):
 
@@ -104,6 +127,11 @@ def get_zenpy_client(environment: str):
     }
     return Zenpy(**creds)
 
+
+
+
+
+
 def prompt_for_environment() -> str:
 
     while True:
@@ -115,6 +143,10 @@ def prompt_for_environment() -> str:
             return environment.lower()
         else:
             print("[bold red]Please enter 'production', 'sandbox', or '0' to go back.[/bold red]")
+
+
+
+
 
 
 if __name__ == "__main__":
