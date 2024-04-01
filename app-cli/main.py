@@ -31,8 +31,12 @@ from utils.advanced import (
 
 
 
+
 app = typer.Typer(add_completion=False,
                   help="Welcome to Typer Zendesk CLI. This is a command line tool for managing Zendesk tasks.")
+
+
+
 
 
 def prompt_for_environment() -> str:
@@ -46,6 +50,10 @@ def prompt_for_environment() -> str:
             return environment.lower()
         else:
             print("[bold red]Please enter 'production', 'sandbox', or '0' to go back.[/bold red]")
+
+
+
+
 
 def get_data_actions(environment: str):
     while True:
@@ -86,6 +94,9 @@ def get_data_actions(environment: str):
             return
         else:
             print(f"[bold yellow]Invalid choice: {choice}, please try again[/bold yellow]")
+
+
+
 
 
 def post_data_actions(environment: str):
@@ -146,6 +157,9 @@ def post_data_actions(environment: str):
             print(f"[bold yellow]Invalid choice: {choice}, please try again[/bold yellow]")
 
 
+
+
+
 def admin_actions():
     while True:
         typer.echo("-------------------------------------------------")
@@ -191,6 +205,8 @@ def admin_actions():
             print(f"[bold yellow]Invalid choice {choice}, please try again [/bold yellow]")
 
 
+
+
 def info_actions():
     print("\n[bold blue]Information about Admin Actions:[/bold blue]")
     print("[1] Get Actions - Download various Zendesk data like Users, Macros, Articles, etc.")
@@ -198,6 +214,8 @@ def info_actions():
     print("[3] Post Actions - Perform bulk actions like creating users, groups, or setting agents to groups.")
     print("[4] ADVANCED - Advanced operations like applying macros or tags to multiple tickets.")
     typer.echo("-------------------------------------------------\n")
+
+
 
 def put_data_actions(environment: str):
     while True:
@@ -225,6 +243,9 @@ def put_data_actions(environment: str):
             update_macro_permissions(file_name, environment)
         else:
             print(f"[bold yellow]Invalid choice: {choice}, please try again[/bold yellow]")
+
+
+
 
 
 def advanced_data_actions(environment: str):
@@ -277,6 +298,9 @@ def advanced_data_actions(environment: str):
 
 
 
+
+
+
 def main_menu():
     while True:
         print("\n[bold blue]Main Menu:[/bold blue]")
@@ -305,6 +329,9 @@ def main_menu():
             print(f"[bold yellow]Invalid choice: {choice}, please try again [/bold yellow]")
 
 
+
+
+
 @app.callback(invoke_without_command=True)
 def main(ctx: typer.Context):
     """
@@ -312,6 +339,8 @@ def main(ctx: typer.Context):
     """
     if ctx.invoked_subcommand is None:
         main_menu()
+
+
 
 
 if __name__ == "__main__":
