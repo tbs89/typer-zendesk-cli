@@ -240,7 +240,7 @@ Run the app again!
 
 ## Contribution and Contact
 <p>Contributions to the Typer Zendesk CLI Tool are welcome! Feel free to fork the repository, make your changes, and submit a pull request. The app includes functionalities that I use in my day-to-day activities, but if you have any suggestions or additional features you'd like to see, just open an issue, and I will consider expanding the app's capabilities.</p>
-<p>For questions, suggestions, or issues, please open an issue on the GitHub repository.</p>
+<p>If you are Zendesk Admin and you have questions, suggestions, or issues, please open an issue on the GitHub repository.</p>
 
 
 ## License
