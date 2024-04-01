@@ -131,7 +131,7 @@ Enter your choice:
 - The app allows interaction both in production and in the sandbox, enabling switching between both environments to test bulk actions or updates on tickets, groups, or users before going to production.
 
 ```console
-Is this for production or sandbox? (Enter '0' to go back):
+Is this for 'production' or 'sandbox'? (Enter '0' to go back):
 ```
 <br><br>
 <hr>
@@ -221,9 +221,11 @@ Is this for production or sandbox?: production
 <p>Upon entering the credentials (email, API token, and domain), the app initiates an API call to this endpoint: {domain}api/v2/users/me.json. The app verifies the correctness of the credentials by making an API call to check them. If the verification is successful, the app creates a <code>.env</code> file where it stores the credentials from that point forward and uses them for any action:</p>
 
 ```console
-Connection verified successfully!
-Credentials for production environment saved successfully!
-Production credentials saved successfully
+[PRODUCTION] Connection verified successfully!
+[PRODUCTION] Credentials saved in .env file
+[PRODUCTION] App is correctly configured
+--------------------------------------------------------------------------------
+Run the app again!
 ```
 
 <p>Credentials can also be modified in option <b>[2] Update Zendesk Credentials</b> or you can simply delete them by removing the <code>.env</code> file</p>
