@@ -137,7 +137,7 @@ Is this for production or sandbox? (Enter '0' to go back):
 
 
 ## Easy Navigation
-    <p>The Typer Zendesk CLI is designed with user experience in mind, offering an intuitive navigation system that guides the user through each step without the constant need to resort to <code>--help</code> for guidance.</p>
+<p>The Typer Zendesk CLI is designed with user experience in mind, offering an intuitive navigation system that guides the user through each step without the constant need to resort to <code>--help</code> for guidance.</p>
 
 
 ```console
