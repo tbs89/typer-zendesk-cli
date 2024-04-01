@@ -7,7 +7,11 @@ from .credentials import get_auth
 from rich import print
 
 app = typer.Typer()
+
 load_dotenv()
+
+
+
 
 
 
@@ -55,6 +59,7 @@ def create_groups(file_name: str, environment: str):
         print(f"[bold green]File updated with group IDs at {file_path}[/bold green]")
     except FileNotFoundError:
         print(f"[bold yellow]File '{file_name}' not found.[/bold yellow]")
+
 
 
 
@@ -113,6 +118,10 @@ def assign_agents_to_group(file_name: str, group_id: int, environment: str):
         print(f"[bold red]File '{file_name}' not found [/bold red]")
 
 
+
+
+
+
 def get_user_id_by_email(email: str, domain: str, auth) -> int:
     """Fetch the user ID from Zendesk API by email."""
     search_url = f"{domain}api/v2/users/search.json?query=email:{email}"
@@ -122,6 +131,10 @@ def get_user_id_by_email(email: str, domain: str, auth) -> int:
     else:
         print(f"[bold yellow]Failed to fetch user ID for email: {email}. Response: {response.text}[/bold yellow]")
         return None
+
+
+
+
 
 
 def create_agents_in_bulk(file_name: str, environment: str):
@@ -175,6 +188,8 @@ def create_agents_in_bulk(file_name: str, environment: str):
         print(f"[bold green]CSV file updated with creation status at {file_path}[/bold green]")
     except FileNotFoundError:
         print(f"[bold yellow]File '{file_name}' not found [/bold yellow]")
+
+
 
 
 
