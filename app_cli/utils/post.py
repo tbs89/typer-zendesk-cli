@@ -1,9 +1,12 @@
+import time
+
 import pandas as pd
 import os
 import typer
 import requests
 from dotenv import load_dotenv
 from .credentials import get_auth
+from .path_utils import ensure_data_path
 from rich import print
 
 app = typer.Typer()
@@ -16,8 +19,7 @@ def create_groups(file_name: str, environment: str):
 
     auth, domain = get_auth(environment)
 
-    dir_path = '../typer_data/post_data/create_groups/'
-    os.makedirs(dir_path, exist_ok=True)
+    dir_path = ensure_data_path('post_data/create_groups', environment)
     file_path = os.path.join(dir_path, file_name)
 
     try:
@@ -37,6 +39,7 @@ def create_groups(file_name: str, environment: str):
             return
 
         df['group_id'] = None
+        df['result'] = None
 
         for index, row in df.iterrows():
             group_name = row['group_name']
@@ -48,9 +51,12 @@ def create_groups(file_name: str, environment: str):
             if response.status_code == 201:
                 group_id = response.json()['group']['id']
                 df.at[index, 'group_id'] = group_id
+                df.at[index, 'result'] = 'created'
+
                 typer.echo(f"Group '{group_name}' created with ID {group_id}.")
             else:
-                print(f"[bold red]Failed to create group '{group_name}': {response.text}[/bold red]")
+                print(f"[bold red][{environment.upper()}] Failed to create group '{group_name}': {response.text}[/bold red]")
+                df.at[index, 'result'] = 'failed'
 
         df.to_csv(file_path, index=False)
         print(f"[bold green][{environment.upper()}] File updated with group IDs at {file_path}[/bold green]")
@@ -64,9 +70,7 @@ def create_groups(file_name: str, environment: str):
 def assign_agents_to_group(file_name: str, group_id: int, environment: str):
 
     auth, domain = get_auth(environment)
-
-    dir_path = '../typer_data/post_data/assign_groups/'
-    os.makedirs(dir_path, exist_ok=True)
+    dir_path = ensure_data_path('post_data/assign_groups', environment)
     file_path = os.path.join(dir_path, file_name)
 
     try:
@@ -77,16 +81,17 @@ def assign_agents_to_group(file_name: str, group_id: int, environment: str):
             print("[bold red]Failed to fetch group information.[/bold red]")
             return
 
-        print(f"[bold blue][{environment.upper()}] You are about to assign agents to the group: {group_name}[/bold blue]")
+        print(f"[bold blue][{environment.upper()}] You are about to assign agents to the group: '{group_name}'[/bold blue]")
         if not typer.confirm(f"[{environment.upper()}] Are you sure you want to proceed?"):
-            print("[bold yellow]Operation cancelled.[/bold yellow]")
+            print("[bold yellow]Operation cancelled - Returning to the menu...[/bold yellow]")
+            time.sleep(2)
             return
 
         df = pd.read_csv(file_path)
         if 'email' not in df.columns or df.empty:
-            print("[bold yellow]The file must have a header with 'email' as the first column name.[/bold yellow]")
+            print(f"[bold yellow][{environment.upper()}] The file must have a header with 'email' as the first column name.[/bold yellow]")
             print(
-                "[Download CSV Template: https://github.com/tbs89/typer_zd/blob/main/docs/templates/assign_agents_template.csv]")
+                "[Download CSV Template: https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/templates/assign_agents_template.csv]")
             return
 
         df['group_membership_id'] = None
@@ -105,14 +110,21 @@ def assign_agents_to_group(file_name: str, group_id: int, environment: str):
                     df.at[index, 'group_membership_id'] = membership_id
                     print(f"[bold green]Agent {email} assigned to {group_name} with membership ID {membership_id}[/bold green]")
                 else:
-                    print(f"[bold yellow]Failed to assign {email} to {group_name}: {membership_response.text}[/bold yellow]")
+                    error_response = membership_response.json()
+                    error_detail = error_response.get('details', {}).get('user_id', [{}])[0].get('error')
+                    if error_detail == "DuplicateValue":
+                        error_message = "User has already the group"
+                    else:
+                        error_message = error_response.get('description', 'Unknown error')
+                    print(
+                        f"[bold yellow][{environment.upper()}] Failed to assign {email} to {group_name}: {error_message}[/bold yellow]")
             else:
-                print(f"[bold yellow]Failed to find user ID for email: {email}[/bold yellow]")
+                print(f"[bold yellow][{environment.upper()}] Failed to find user ID for email: {email}[/bold yellow]")
 
         df.to_csv(file_path, index=False)
         print(f"[bold green][{environment.upper()}] CSV file updated with group memberships at {file_path}[/bold green]")
     except FileNotFoundError:
-        print(f"[bold red]File '{file_name}' not found [/bold red]")
+        print(f"[bold red][{environment.upper()}] File '{file_name}' not found [/bold red]")
 
 
 
@@ -120,7 +132,7 @@ def assign_agents_to_group(file_name: str, group_id: int, environment: str):
 
 
 def get_user_id_by_email(email: str, domain: str, auth) -> int:
-    """Fetch the user ID from Zendesk API by email."""
+
     search_url = f"{domain}api/v2/users/search.json?query=email:{email}"
     response = requests.get(search_url, auth=auth)
     if response.status_code == 200 and 'users' in response.json() and len(response.json()['users']) > 0:
@@ -137,12 +149,10 @@ def get_user_id_by_email(email: str, domain: str, auth) -> int:
 def create_agents_in_bulk(file_name: str, environment: str):
     auth, domain = get_auth(environment)
 
-    dir_path = '../typer_data/post_data/create_agents/'
-    os.makedirs(dir_path, exist_ok=True)
-    file_path = os.path.join(dir_path, file_name)
+    dir_path = ensure_data_path('advanced/create_agents', environment)
 
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(dir_path)
         if not all(column in df.columns for column in ['name', 'email', 'custom_role_id']):
             print("[bold yellow]The file must have 'name', 'email', and 'custom_role_id' columns.[/bold yellow]")
             print("[Download CSV Template: https://github.com/tbs89/typer_zd/blob/main/docs/templates/create_agents_template.csv]")
@@ -180,7 +190,7 @@ def create_agents_in_bulk(file_name: str, environment: str):
                 typer.echo("-----------------------------------------------------------------", err=True)
                 print(f"[bold yellow]Failed to create {row['name']}: {error_message}[/bold yellow]", err=True)
 
-        df.to_csv(file_path, index=False)
+        df.to_csv(dir_path, index=False)
         typer.echo("-----------------------------------------------------------------")
         print(f"[bold green][{environment.upper()}] CSV file updated with creation status at {file_path}[/bold green]")
     except FileNotFoundError:

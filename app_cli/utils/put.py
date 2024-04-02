@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+
 import typer
 import requests
 from dotenv import load_dotenv
@@ -11,13 +12,15 @@ app = typer.Typer()
 
 load_dotenv()
 
+import os
+
+from .path_utils import ensure_data_path
 
 def update_macro_permissions(file_name: str, environment: str):
     
     auth, domain = get_auth(environment)
 
-    dir_path = '../typer_data/put_data/update_permissions_macros/'
-    os.makedirs(dir_path, exist_ok=True)
+    dir_path = ensure_data_path('put_data/update_permissions_macros', environment)
     file_path = os.path.join(dir_path, file_name)
 
     try:
@@ -26,7 +29,7 @@ def update_macro_permissions(file_name: str, environment: str):
             print("[bold yellow]The file must have at least 'macro_id' and 'group_1' columns.[/bold yellow]")
             return
 
-        if not typer.confirm("\nAre you sure you want to proceed?", default=False):
+        if not typer.confirm("\nAre you sure you want to proceed updating macros permissions?", default=False):
             print("[bold red]Operation cancelled.[/bold red]")
             return
 
@@ -46,17 +49,15 @@ def update_macro_permissions(file_name: str, environment: str):
 
             if response.status_code in [200, 201]:
                 action = "opened to all groups" if open_to_all else "restricted to specific groups"
-                print(f"[bold green]Macro ID {macro_id} successfully {action}.[/bold green]")
+                print(f"[bold green][{environment.upper()}] Macro ID {macro_id} successfully {action}.[/bold green]")
             else:
                 error_message = response.json().get('error', 'Unknown error')
-                print(f"[bold red]Failed to update Macro ID {macro_id}: {error_message}[/bold red]")
+                print(f"[bold red][{environment.upper()}] Failed to update Macro ID {macro_id}: {error_message}[/bold red]")
 
     except FileNotFoundError:
-        print(f"[bold yellow]File '{file_name}' not found.[/bold yellow]")
+        print(f"[bold yellow] [{environment.upper()}] File '{file_name}' not found.[/bold yellow]")
     except ValueError as e:
-        print(f"[bold red][{environment.upper()}] Error processing file: {e}. Please ensure your 'group_id' values are valid group ID#s or 'open' to open access.[/bold red]")
-
-
+        print(f"[bold red][{environment.upper()}] Error processing file: {e}. Please ensure your 'group_id' values are valid group ID's or 'open' to open access.[/bold red]")
 
 
 

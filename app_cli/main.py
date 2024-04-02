@@ -3,6 +3,7 @@ import os
 from rich import print
 import time
 
+from utils.path_utils import ensure_data_path
 from utils.credentials import app as credentials_app
 from utils.get import (
     get_users,
@@ -112,10 +113,10 @@ def post_data_actions(environment: str):
             return
 
         if choice == 1:
-            dir_path = 'typer_data/post_data/create_groups/'
-            os.makedirs(dir_path, exist_ok=True)
+
+            dir_path = ensure_data_path('post_data/create_groups', environment)
             typer.echo("----------------------------------------------")
-            print("[bold blue]INSTRUCTIONS TO CREATE GROUPS IN BULK[/bold blue]")
+            print(f"[bold blue][{environment.upper()}] INSTRUCTIONS TO CREATE GROUPS IN BULK[/bold blue]")
             typer.echo("\n1 - First, ensure you've uploaded a CSV file to the following directory:")
             typer.echo(f"{dir_path} (folder has been created automatically already)")
             typer.echo("2 - The CSV file should have a header with 'group_name' as the first column.")
@@ -125,25 +126,25 @@ def post_data_actions(environment: str):
             file_name = typer.prompt("3 - Enter the name of the CSV file you've uploaded (including .csv)")
             create_groups(file_name, environment)
         elif choice == 2:
-            dir_path = 'typer_data/post_data/assign_groups/'
-            os.makedirs(dir_path, exist_ok=True)
+
+            dir_path = ensure_data_path('post_data/assign_groups', environment)
             typer.echo("----------------------------------------------")
-            print("[bold blue]INSTRUCTIONS TO ASSIGN AGENTS TO A GROUP IN BULK[/bold blue]")
+            print(f"[bold blue][{environment.upper()}] INSTRUCTIONS TO ASSIGN AGENTS TO A GROUP IN BULK[/bold blue]")
             typer.echo("\n1 - First, ensure you've uploaded a CSV file to the following directory:")
             typer.echo(f"{dir_path} (folder has been created automatically already)")
             typer.echo("2 - The CSV file should have a header with 'email' as the first column.")
             typer.echo("This column should contain the email addresses of the agents you wish to assign to a group.")
             print(
-                "[Download CSV Template: https://github.com/tbs89typer-zendesk-cli/blob/main/docs/templates/assign_agents_template.csv]")
+                "[Download CSV Template: https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/templates/assign_agents_template.csv]")
             file_name = typer.prompt("3 - Enter the name of the CSV file you've uploaded (including .csv)")
             group_id = typer.prompt("4 - Enter the ID of the group you wish to assign the agents to", type=int)
             assign_agents_to_group(file_name, group_id, environment)
 
         elif choice == 3:
-            dir_path = 'typer_data/post_data/create_agents/'
-            os.makedirs(dir_path, exist_ok=True)
+
+            dir_path = ensure_data_path('post_data/create_agents', environment)
             typer.echo("----------------------------------------------")
-            typer.echo("INSTRUCTIONS TO CREATE AGENTS IN BULK")
+            typer.echo(f"[{environment.upper()}] INSTRUCTIONS TO CREATE AGENTS IN BULK")
             typer.echo("\n1 - First, ensure you've uploaded a CSV file to the following directory:")
             typer.echo(f"{dir_path} (folder has been created automatically already)")
             typer.echo("2 - The CSV file should have 3 columns: 'name' as the first column, 'email' as second column and 'custom_role_id'")
@@ -154,8 +155,6 @@ def post_data_actions(environment: str):
             create_agents_in_bulk(file_name, environment)
         else:
             print(f"[bold yellow]Invalid choice: {choice}, please try again[/bold yellow]")
-
-
 
 
 
@@ -184,6 +183,7 @@ def admin_actions():
             continue
 
         environment = prompt_for_environment()
+
         if environment == 'back':
             continue
 
@@ -217,8 +217,11 @@ def info_actions():
 
 
 def put_data_actions(environment: str):
+
+    dir_path = ensure_data_path('put_data/update_permissions_macros', environment)
+
     while True:
-        print(f"\n[bold blue][{environment.upper()}]Select the PUT action you want to perform:[/bold blue]")
+        print(f"\n[bold blue][{environment.upper()}] Select the PUT action you want to perform:[/bold blue]")
         typer.echo("---------------------------------------")
         typer.echo("[1] Macros - Update Permissions")
         print("[bold magenta][0] Go Back[/bold magenta]")
@@ -228,8 +231,7 @@ def put_data_actions(environment: str):
             return
 
         if choice == 1:
-            dir_path = 'typer_data/put_data/update_permissions_macros/'
-            os.makedirs(dir_path, exist_ok=True)
+
             typer.echo("----------------------------------------------")
             print("[bold blue]INSTRUCTIONS TO UPDATE MACRO PERMISSIONS[/bold blue]")
             typer.echo("\n1 - First, ensure you've uploaded a CSV file to the following directory:")
@@ -246,8 +248,9 @@ def put_data_actions(environment: str):
 
 
 
-
 def advanced_data_actions(environment: str):
+
+
     while True:
         print(f"\n[bold blue][{environment.upper()}] Select the ADVANCED action you want to perform:[/bold blue]")
         typer.echo("---------------------------------------")
@@ -261,14 +264,14 @@ def advanced_data_actions(environment: str):
 
 
         if choice == 1:
-            dir_path = 'typer_data/advanced/apply_macro/'
-            os.makedirs(dir_path, exist_ok=True)
+
+            dir_path = ensure_data_path('advanced/apply_macro', environment)
             typer.echo("----------------------------------------------")
             print("[bold blue]INSTRUCTIONS TO APPLY MACROS IN BULK[/bold blue]")
             typer.echo("\n1 - First, ensure you've uploaded a CSV file to the following directory:")
             typer.echo(f"{dir_path} (folder has been created automatically already)")
             typer.echo("2 - The CSV file must have a 'ticket_id' column and 'macro_id' column.")
-            print("[Download CSV Template: https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/templates/apply_macro_template.csv4]")
+            print("[Download CSV Template: https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/templates/apply_macro_template.csv]")
             typer.echo(
                 "If you want to apply the same macro to all tickets, 'macro_id' column values should be the same.")
             print(
@@ -278,12 +281,13 @@ def advanced_data_actions(environment: str):
                 run_macro_on_tickets(file_name, environment)
                 return
             except typer.Abort:
-                typer.echo("Returning to the previous menu.")
+                typer.echo("Returning to the previous menu...")
+                time.sleep(2)
                 continue
 
         elif choice == 2:
-            dir_path = 'typer_data/advanced/apply_tags/'
-            os.makedirs(dir_path, exist_ok=True)
+
+            dir_path = ensure_data_path('advanced/apply_tags', environment)
             print("[bold blue]INSTRUCTIONS TO APPLY TAGS TO TICKETS IN BULK[/bold blue]")
             print("\n- Ensure you've uploaded a CSV file to the following directory:")
             print(f"{dir_path} (folder has been created automatically already)")
@@ -326,6 +330,7 @@ def main_menu():
             raise typer.Exit()
         else:
             print(f"[bold yellow]Invalid choice: {choice}, please try again [/bold yellow]")
+
 
 
 @app.callback(invoke_without_command=True)

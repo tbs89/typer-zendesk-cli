@@ -1,5 +1,6 @@
 import typer
 from .credentials import get_zenpy_client
+from .path_utils import ensure_data_path
 from dotenv import load_dotenv
 import pandas as pd
 import os
@@ -27,8 +28,7 @@ def run_macro_on_tickets(file_name: str, environment: str):
     domain_url = os.getenv(f'ZENDESK_{environment.upper()}_DOMAIN').rstrip('/')
     subdomain = domain_url.split('//')[-1].split('.')[0]
 
-    dir_path = '../typer_data/advanced/apply_macro/'
-    os.makedirs(dir_path, exist_ok=True)
+    dir_path = ensure_data_path('advanced/apply_macro', environment)
     file_path = os.path.join(dir_path, file_name)
 
     test_ticket_id_input = typer.prompt(
@@ -87,8 +87,7 @@ def apply_tags_to_tickets(file_name: str, environment: str):
 
     zenpy_client = get_zenpy_client(environment)
 
-    dir_path = '../typer_data/advanced/apply_tags/'
-    os.makedirs(dir_path, exist_ok=True)
+    dir_path = ensure_data_path('advanced/apply_tags', environment)
     file_path = os.path.join(dir_path, file_name)
 
     df = pd.read_csv(file_path)
