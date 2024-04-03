@@ -192,7 +192,7 @@ def create_agents_in_bulk(file_name: str, environment: str):
 
         df.to_csv(dir_path, index=False)
         typer.echo("-----------------------------------------------------------------")
-        print(f"[bold green][{environment.upper()}] CSV file updated with creation status at {file_path}[/bold green]")
+        print(f"[bold green][{environment.upper()}] CSV file updated with creation status at {dir_path}[/bold green]")
     except FileNotFoundError:
         print(f"[bold yellow]File '{file_name}' not found [/bold yellow]")
 
