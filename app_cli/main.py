@@ -1,9 +1,8 @@
 import typer
-import os
 from rich import print
 import time
 
-from utils.path_utils import ensure_data_path
+from utils.helpers import ensure_data_path, prompt_for_environment
 from utils.credentials import app as credentials_app
 from utils.get import (
     get_users,
@@ -32,25 +31,8 @@ from utils.advanced import (
 
 
 
-
 app = typer.Typer(add_completion=False,
                   help="Welcome to Typer Zendesk CLI. This is a command line tool for managing Zendesk tasks.")
-
-
-
-
-
-def prompt_for_environment() -> str:
-
-    while True:
-        environment = typer.prompt("Is this for 'production' or 'sandbox'? (Enter '0' to go back)",
-                                show_choices=False)
-        if environment == '0':
-            return 'back'
-        if environment.lower() in ['production', 'sandbox']:
-            return environment.lower()
-        else:
-            print("[bold red] Please enter 'production', 'sandbox', or '0' to go back.[/bold red]")
 
 
 
@@ -144,7 +126,7 @@ def post_data_actions(environment: str):
 
             dir_path = ensure_data_path('post_data/create_agents', environment)
             typer.echo("----------------------------------------------")
-            typer.echo(f"[{environment.upper()}] INSTRUCTIONS TO CREATE AGENTS IN BULK")
+            print(f"[bold blue][{environment.upper()}] INSTRUCTIONS TO CREATE AGENTS IN BULK[/bold blue]")
             typer.echo("\n1 - First, ensure you've uploaded a CSV file to the following directory:")
             typer.echo(f"{dir_path} (folder has been created automatically already)")
             typer.echo("2 - The CSV file should have 3 columns: 'name' as the first column, 'email' as second column and 'custom_role_id'")
@@ -288,6 +270,7 @@ def advanced_data_actions(environment: str):
         elif choice == 2:
 
             dir_path = ensure_data_path('advanced/apply_tags', environment)
+            typer.echo("----------------------------------------------")
             print("[bold blue]INSTRUCTIONS TO APPLY TAGS TO TICKETS IN BULK[/bold blue]")
             print("\n- Ensure you've uploaded a CSV file to the following directory:")
             print(f"{dir_path} (folder has been created automatically already)")
@@ -324,7 +307,7 @@ def main_menu():
         elif choice == 3:
             admin_actions()
         elif choice == 4:
-            print(f"[bold green]Documentation is in progress... [/bold green]")
+            print(f"[bold green]Documentation is in progress... Check repo meanwhile https://github.com/tbs89/typer-zendesk-cli [/bold green]")
             time.sleep(3)
         elif choice == 0:
             raise typer.Exit()
@@ -337,7 +320,7 @@ def main_menu():
 def main(ctx: typer.Context):
 
     if ctx.invoked_subcommand is None:
-        main_menu()
+            main_menu()
 
 
 

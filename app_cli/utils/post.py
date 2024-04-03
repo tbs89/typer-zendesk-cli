@@ -5,8 +5,7 @@ import os
 import typer
 import requests
 from dotenv import load_dotenv
-from .credentials import get_auth
-from .path_utils import ensure_data_path
+from .helpers import ensure_data_path, get_auth
 from rich import print
 
 app = typer.Typer()
@@ -149,10 +148,13 @@ def get_user_id_by_email(email: str, domain: str, auth) -> int:
 def create_agents_in_bulk(file_name: str, environment: str):
     auth, domain = get_auth(environment)
 
-    dir_path = ensure_data_path('advanced/create_agents', environment)
+    dir_path = ensure_data_path('post_data/create_agents', environment)
+
+    file_path = os.path.join(dir_path, file_name)
+
 
     try:
-        df = pd.read_csv(dir_path)
+        df = pd.read_csv(file_path)
         if not all(column in df.columns for column in ['name', 'email', 'custom_role_id']):
             print("[bold yellow]The file must have 'name', 'email', and 'custom_role_id' columns.[/bold yellow]")
             print("[Download CSV Template: https://github.com/tbs89/typer_zd/blob/main/docs/templates/create_agents_template.csv]")
@@ -190,9 +192,9 @@ def create_agents_in_bulk(file_name: str, environment: str):
                 typer.echo("-----------------------------------------------------------------", err=True)
                 print(f"[bold yellow]Failed to create {row['name']}: {error_message}[/bold yellow]", err=True)
 
-        df.to_csv(dir_path, index=False)
+        df.to_csv(file_path, index=False)
         typer.echo("-----------------------------------------------------------------")
-        print(f"[bold green][{environment.upper()}] CSV file updated with creation status at {dir_path}[/bold green]")
+        print(f"[bold green][{environment.upper()}] CSV file updated with creation status at {file_path}[/bold green]")
     except FileNotFoundError:
         print(f"[bold yellow]File '{file_name}' not found [/bold yellow]")
 

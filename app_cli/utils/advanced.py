@@ -1,6 +1,6 @@
 import typer
 from .credentials import get_zenpy_client
-from .path_utils import ensure_data_path
+from .helpers import ensure_data_path
 from dotenv import load_dotenv
 import pandas as pd
 import os

@@ -7,7 +7,7 @@ import typer
 from rich.progress import Progress
 from rich import print
 import time
-from .path_utils import ensure_data_path
+from .helpers import ensure_data_path
 
 load_dotenv()
 
@@ -42,6 +42,17 @@ def fetch_data_with_progress(url: str, environment: str, progress: Progress, tas
 
 
 
+def reorder_columns(data_frame):
+
+    columns = list(data_frame.columns)
+
+    if 'role_name' in columns:
+        columns.insert(1, columns.pop(columns.index('role_name')))
+    data_frame = data_frame[columns]
+    return data_frame
+
+
+
 def merge_users_and_roles(users: list, roles: list) -> pd.DataFrame:
     roles_df = pd.DataFrame(roles).rename(columns={"id": "custom_role_id", "name": "role_name"})
     users_df = pd.DataFrame(users)
@@ -58,26 +69,16 @@ def merge_users_and_roles(users: list, roles: list) -> pd.DataFrame:
 
 
 
-def reorder_columns(data_frame):
-
-    columns = list(data_frame.columns)
-
-    if 'role_name' in columns:
-        columns.insert(1, columns.pop(columns.index('role_name')))
-    data_frame = data_frame[columns]
-    return data_frame
-
-
-
 def prepare_and_save_data(data, data_type, environment):
     if isinstance(data, list) and not data:
-        print(f"❌ - [bold red]Failed to fetch {data_type} from Zendesk for {environment} environment[/bold red]")
+        print(f"❌ - [bold red]Failed to fetch '{data_type}' from Zendesk for {environment} environment[/bold red]")
+        print(f"❌ - [bold red]Please be sure that {environment.capitalize()} contains '{data_type}'[/bold red]")
         return
     else:
         df = pd.DataFrame(data)
 
     if df.empty:
-        print(f"❌ - [bold red]No {data_type} data found to save for {environment} environment[/bold red]")
+        print(f"❌ - [bold red]No '{data_type}' data found to save for {environment} environment[/bold red]")
         return
 
     dir_path = ensure_data_path(f'get_data/{data_type}', environment)
@@ -89,9 +90,9 @@ def prepare_and_save_data(data, data_type, environment):
 
     print(f"[green][{environment.upper()}]--------------------------------------------------------------------- [/green]")
     print(f"✅ - [green]{data_type.capitalize()} data saved successfully to[/green] [bold green]{file_path_rel}[/bold green]")
-    time.sleep(4)
-
-
+    print(
+        "[green]---------------------------------------------------------------------------------[/green]")
+    time.sleep(2)
 
 
 

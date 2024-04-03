@@ -1,10 +1,9 @@
 import pandas as pd
-import os
 
 import typer
 import requests
 from dotenv import load_dotenv
-from .credentials import get_auth
+from .helpers import ensure_data_path, get_auth
 import json
 from rich import print
 
@@ -14,7 +13,7 @@ load_dotenv()
 
 import os
 
-from .path_utils import ensure_data_path
+
 
 def update_macro_permissions(file_name: str, environment: str):
     
@@ -27,6 +26,7 @@ def update_macro_permissions(file_name: str, environment: str):
         df = pd.read_csv(file_path)
         if 'macro_id' not in df.columns or 'group_1' not in df.columns:
             print("[bold yellow]The file must have at least 'macro_id' and 'group_1' columns.[/bold yellow]")
+            print("[bold yellow]Check Template: [https://github.com/tbs89/typer-zendesk-cli/blob/main/docs/templates/macro_update_template.csv][/bold yellow]")
             return
 
         if not typer.confirm("\nAre you sure you want to proceed updating macros permissions?", default=False):
@@ -49,6 +49,7 @@ def update_macro_permissions(file_name: str, environment: str):
 
             if response.status_code in [200, 201]:
                 action = "opened to all groups" if open_to_all else "restricted to specific groups"
+                print(f"[bold green]------------------------------------------------------------------[/bold green]")
                 print(f"[bold green][{environment.upper()}] Macro ID {macro_id} successfully {action}.[/bold green]")
             else:
                 error_message = response.json().get('error', 'Unknown error')
