@@ -228,9 +228,14 @@ Is this for production or sandbox?: production
 ```console
 [PRODUCTION] Connection verified successfully!
 [PRODUCTION] Credentials saved in .env file
-[PRODUCTION] App is correctly configured
+--------------------------------------------------------------------------------
+[PRODUCTION] CONFIGURATION:
+ USER EMAIL: name.surname@domain.com - DOMAIN: https://mycompany.zendesk.com/
+ Token: ie3cdCgLFa******************************** 
+[PRODUCTION] App is correctly configured to be used in Production
 --------------------------------------------------------------------------------
 Run the app again!
+
 ```
 
 <p>Credentials can also be modified in option <b>[2] Update Zendesk Credentials</b> or you can simply delete them by removing the <code>.env</code> file</p>
